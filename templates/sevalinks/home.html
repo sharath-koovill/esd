@@ -1,0 +1,81 @@
+{% extends "sevalinks/base.html" %}
+
+{% block title %}Sevalinks - Home{% endblock %}
+
+{% block main_content %}
+<div class="section no-pad-bot" id="index-banner">
+<div class="container">
+  <br><br>
+  <h2 class="header center orange-text">Hi, are you here looking for a service near you ?</h2>
+  <div class="row center">
+    <h5 class="header col s12 light">Search below for any service near your location.</h5>
+  </div>
+  <div class="row">
+  	<div class="col s12">
+	<form action="/seva/find/" method="post">
+	{% csrf_token %}
+  	<div class="row">
+    	<div class="col s1">
+    		</div>    	
+      	<div class="col s3" id="prefetch_profession">
+      	  <label for="id_profession">Profession</label>
+	      <i class="material-icons prefix">work</i>	    		      
+	      <input placeholder="Eg. teacher" id="id_profession" type="text" name="search_profession" class="profession">      	
+	    </div>
+	    <div class="col s3">
+	    	<label for="id_name">Name</label>
+	    	<i class="material-icons prefix">person_pin</i>	  	  
+	      <input placeholder="Eg. Walter" id="id_name" type="text" name="search_name" class="name">	      
+	    </div>
+	    <div class="col s3" id="prefetch">
+	    	<label for="id_location">Location</label>
+	    	<i class="material-icons prefix">location_on</i>	    		      
+	      <input placeholder="Eg. mangaluru" id="id_location" type="text" name="search_location" class="location">	      
+	    </div>
+	    <div class="input-field col s2">
+	    	<button class="btn-large waves-effect waves-light orange" type="submit" name="action">Find		    	
+		  	</button>
+	      <!--a href="/seva/landing/" id="submit_search" class="btn-large waves-effect waves-light orange">Find</a-->
+	     </div>
+    </div>
+    </form>
+  </div>
+  <br><br>
+
+</div>
+</div>
+{% endblock %}
+
+{% block js_content %}
+<script type="text/javascript" src="/static/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript">
+   var cities = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  
+  prefetch: '/static/js/cities.json'
+});
+
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#prefetch .location').typeahead(null, {
+  name: 'cities',
+  source: cities
+});
+</script>
+<script type="text/javascript">
+   var profession = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  
+  prefetch: '/static/js/profession.json'
+});
+
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#prefetch_profession .profession').typeahead(null, {
+  name: 'profession',
+  source: profession
+});
+</script>
+{% endblock %}

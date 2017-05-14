@@ -1,0 +1,128 @@
+{% extends "sevalinks/account_base.html" %}
+
+{% block title %}Sevalinks - Add Location{% endblock %}
+
+
+{% block account_content %}
+  <br><br> 
+  <div class="col s12 m8 l9">
+    <form class="col s12" action="/seva/addlocation/" method="post">
+  		{% csrf_token %}
+  	<div class="row">
+  		<div class="col s12">
+			<p style="height:10px;color: #f44242;">{{ validation_error }}</p>
+		</div>
+  		<div class="col s12">  		
+		  	<h5 class="header center orange-text">Your Location</h5>
+	    </div>
+  		<div class="col s12">  		
+		  	<div class="input-field col s6">	  	  
+		      <input readonly placeholder="Eg. India" id="id_user_country" name="user_country" value="India" type="text" class="validate">
+		      <label for="id_user_country">Country</label>
+		    </div>
+	    </div>
+	    <div class="col s12">  		
+		  	<div class="input-field col s6">
+		  			  			
+		  		<select id="id_user_state" name="user_state" >
+				<option value="AP">Andhra Pradesh</option>
+				<option value="AR">Arunachal Pradesh</option>
+				<option value="AS">Assam</option>
+				<option value="BR">Bihar</option>
+				<option value="CT">Chhattisgarh</option>
+				<option value="GA">Goa</option>
+				<option value="GJ">Gujarat</option>
+				<option value="HR">Haryana</option>
+				<option value="HP">Himachal Pradesh</option>
+				<option value="JK">Jammu and Kashmir</option>
+				<option value="JH">Jharkhand</option>
+				<option value="KA">Karnataka</option>
+				<option value="KL">Kerala</option>
+				<option value="MP">Madhya Pradesh</option>
+				<option value="MH">Maharashtra</option>
+				<option value="MN">Manipur</option>
+				<option value="ML">Meghalaya</option>
+				<option value="MZ">Mizoram</option>
+				<option value="NL">Nagaland</option>
+				<option value="OR">Odisha</option>
+				<option value="PB">Punjab</option>
+				<option value="RJ">Rajasthan</option>
+				<option value="SK">Sikkim</option>
+				<option value="TN">Tamil Nadu</option>
+				<option value="TG">Telangana</option>
+				<option value="TR">Tripura</option>
+				<option value="UT">Uttarakhand</option>
+				<option value="UP">Uttar Pradesh</option>
+				<option value="WB">West Bengal</option>
+				<option value="AN">Andaman and Nicobar Islands</option>
+				<option value="CH">Chandigarh</option>
+				<option value="DN">Dadra and Nagar Haveli</option>
+				<option value="DD">Daman and Diu</option>
+				<option value="DL">Delhi</option>
+				<option value="LD">Lakshadweep</option>
+				<option value="PY">Puducherry</option>
+				</select>
+		  		<label for="id_user_state">State</label>  	  
+		      <!--input placeholder="Eg. Karnataka" id="id_user_state" name="user_state" value="{{ user_state }}" type="text" class="validate"-->
+		      
+		    </div>
+		    <div class="input-field col s6" id="prefetch">
+		  		<!--label for="id_user_area">Area</label-->	  	  
+		      <input id="id_user_area" name="user_area" type="text" value="{{ user_area }}" placeholder="Area" class="validate">		      
+		    </div>
+	    </div>
+	    <!--div class="col s12">  		
+		  	<div class="input-field col s6" id="prefetch">
+		  		<label for="id_user_area">Area</label>	  	  
+		      <input id="id_user_area" name="user_area" type="text" value="{{ user_area }}" placeholder="Area" class="validate">		      
+		    </div>
+	    </div-->
+	    <div class="col s12">  		
+		  	<div class="input-field col s6">	  	  
+		      <input id="id_user_postcode" name="user_postcode" type="number" value="{{ user_postcode }}" placeholder="Eg. 575001" class="validate">
+		      <label for="id_user_postcode">Pincode</label>
+		    </div>
+	    </div>	        
+	    <div class="col s12">
+	    	<br />	    		    		  	
+	    </div>	    
+	    <div class="col s12">
+		    <div class="input-field col s6">
+		    	<a class="waves-effect waves-light btn" href="/seva/myaccount/" ><i class="material-icons">fast_rewind</i></a>		    	
+			    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+		    	<i class="material-icons right">send</i>
+		  		</button>
+	  		</div>
+  		</div>
+	    <div class="col s12">
+	    	<br />
+	    	<label>(All fields are mandatory)</label>	    		  	
+	    </div>
+    </div>
+    </form>
+  </div>  
+{% endblock %}
+{% block js_content %}
+<script type="text/javascript">
+   $(document).ready(function() {   	
+    $('select').material_select();        
+  });
+  $("#id_user_state").val("{{ user_state }}");
+  </script>
+  <script type="text/javascript" src="/static/js/typeahead.bundle.min.js"></script>
+  <script type="text/javascript">
+   var cities = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  
+  prefetch: '/static/js/cities.json'
+});
+
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#prefetch .validate').typeahead(null, {
+  name: 'cities',
+  source: cities
+});
+</script>
+{% endblock %}

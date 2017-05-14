@@ -1,0 +1,80 @@
+{% extends "sevalinks/base.html" %}
+
+{% block title %}Sevalinks - Subscriptions{% endblock %}
+
+{% block top_menu %}
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">SevaLinks</a>
+      <ul class="right hide-on-med-and-down">
+        <li class="active"><a href="/seva/myaccount/">My Account</a></li>
+        <li><a href="">Connections</a></li>
+        <li><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+      	<li class="active"><a href="/seva/myaccount/">My Account</a></li>
+      	<li><a href="">Connections</a></li>
+        <li><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  {% endblock %}
+
+{% block main_content %}
+   <div class="row">
+   	</div>
+
+    <div class="container">
+      <h4>My Subscriptions</h4>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>User Plan : Gold</h5>
+        <p>A Gold member will be able to add professional details about himself and appear first while being searched by other members. </p>
+      </div>
+      <div class="divider"></div>
+    	<div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Default Membership</h5>
+
+            <p class="light">A Sevalinks Default member will not be able to add professional details but can search for other prominent members of the Sevalinks community. A Sevalinks Default member can request for network connections with other prominent members of Sevalinks and get accepted as a network connection.</p>
+            <button class="btn-flat waves-effect waves-light blue lighten-2" >Downgrade</button>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Gold Membership</h5>
+
+            <p class="light">A Sevalinks Gold member will be able to add professional details about himself and appear first while being searched by other members. A Sevalinks Gold member can request for network connections with other prominent members of Sevalinks and get accepted as a network connection.</p>
+            <button class="btn disabled" >Subscribed</button>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Platinum Membership</h5>
+
+            <p class="light">A Sevalinks Platinum member will be able to add multiple professional details about himself and appear first while being searched by other members hence thereby get more amount of recognition among the Sevalinks community. A Sevalinks Platinum member can request for network connections with other prominent members of Sevalinks and get accepted as a network connection.</p>
+            <button class="btn-flat waves-effect waves-light blue lighten-2" >Upgrade</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock %}
+
+{% block js_content %}
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends "sevalinks/account_base.html" %}
+
+{% block title %}Sevalinks - My Account{% endblock %}
+
+
+{% block account_content %}
+      <div class="col s12 m7 l8 offset-m1 offset-l1">
+      	<div class="row card">
+          <div class="card-content black6-text">
+            <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><i class="material-icons">perm_identity</i>Personal</div>
+                <div class="collapsible-body">
+                  <ul class="collection">
+                    <li class="collection-item"><label>First Name : </label> {{ first_name }}</li>
+                    <li class="collection-item"><label>Last Name : </label> {{ last_name }}</li>
+                    <li class="collection-item"><label>Userame : </label> {{ username }}</li>
+                    <li class="collection-item"><label>Email : </label> {{ email }}</li>
+                    <li class="collection-item"><label>Phone Number : </label> {{ phone_number }}</li>
+                    <li class="collection-item">
+                      <a class="waves-effect waves-light btn" href="/seva/editprofilerender/">Edit Profile
+                      <i class="material-icons right">mode_edit</i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">place</i>Location</div>
+              <div class="collapsible-body">
+                <ul class="collection">
+                  <li class="collection-item"><label>Country : </label> {{ user_country }}</li>
+                  <li class="collection-item"><label>State : </label> {{ user_state }}</li>
+                  <li class="collection-item"><label>Area : </label> {{ user_area }}</li>
+                  <li class="collection-item"><label>Pincode : </label> {{ user_postcode }}</li>
+                  <li class="collection-item">
+                    <a class="waves-effect waves-light btn" href="/seva/addlocation/">Edit Location
+                    <i class="material-icons right">mode_edit</i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">work</i>Profession</div>
+              <div class="collapsible-body">
+                <ul class="collection">
+                  <li class="collection-item"><label >Profession : </label>{{ user_profession }}</li>
+                  <li class="collection-item"><label >Job Designation Level : </label> {% if user_job_designation %}{{ user_job_designation}}{% else %} - {% endif %}</li>
+                  <li class="collection-item"><label >Experience : </label>{{ user_experience }}</li>
+                  <li class="collection-item"><label >Industry : </label>{% if user_industry %}{{ user_industry}}{% else %} - {% endif %}</li>
+                  <li class="collection-item"><label >Company : </label>{% if user_company %}{{ user_company}}{% else %} - {% endif %}</li>
+                  <li class="collection-item"><label >Passionate About : </label>{% if user_description %}{{ user_description}}{% else %} - {% endif %}</li>
+                  <li class="collection-item">
+                    <a class="waves-effect waves-light btn" href="/seva/addprofession/">Edit Profession
+                    <i class="material-icons right">mode_edit</i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <div class="collapsible-header"><i class="material-icons">class</i>Education</div>
+              <div class="collapsible-body">
+                <ul class="collection">
+                  <li class="collection-item"><label >College : </label>Vishveswaraya Technological University, Belgaum{{ user_college }}</li>
+                  <li class="collection-item"><label >From year: </label> 2006{{ user_college_start }}</li>
+                  <li class="collection-item"><label >To year : </label> 2010{{ user_college_end }}</li>
+                  <li class="collection-item"><label >Description : </label> Bachelors in Electronics and Communication{{ user_description }}</li>
+                  <li class="collection-item">
+                    <a class="waves-effect waves-light btn" href="/seva/addprofession/">Edit Profession
+                    <i class="material-icons right">mode_edit</i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          </div>
+      	<!--br />
+      	<div class="col s1">
+      	</div>
+      	<div class="col s5">
+        <p><label for="firstname">First Name : </label>        <h6>{{ first_name }}</h6></p>
+        </div>
+        <div class="col s1">
+      	</div>
+        <div class="col s5">
+        <p><label for="lastname">Last Name : </label>        <h6>{{ last_name }}</h6></p>
+        </div>
+        <div class="col s1">
+      	</div>
+      	<div class="col s5">
+        <p><label for="lastname">Userame : </label>        <h6>{{ username }}</h6></p>
+        </div>
+        <div class="col s1">
+      	</div>
+        <div class="col s5">
+        <p><label for="email">Email : </label>        <h6>{{ email }}</h6></p>
+        </div>
+        <div class="col s1">
+      	</div>
+        <div class="col s5">
+        <p><label for="phonenumber">Phone Number : </label>        <h6>{{ phone_number }}</h6></p>
+        </div>
+        <div class="col s12">
+        <br />
+        <a class="waves-effect waves-light btn" href="/seva/editprofilerender/">Edit Profile
+        <i class="material-icons right">mode_edit</i>
+        </a>
+        <br />
+        <br />
+      </div-->
+        </div>
+
+        <!--div class="row card">
+        <br />
+        <div class="col s12"
+        <p><label for="country">Country : </label>        <h6>{{ user_country }}</h6></p>
+        <p><label for="state">State : </label>        <h6>{{ user_state }}</h6></p>
+        <p><label for="area">Area : </label>        <h6>{{ user_area }}</h6></p>
+        <p><label for="pincode">Pincode : </label>        <h6>{{ user_postcode }}</h6></p>
+        <br />
+        <a class="waves-effect waves-light btn" href="/seva/addlocation/">Edit Location
+        <i class="material-icons right">mode_edit</i>
+        </a>
+        <br />
+        <br />
+        </div>
+        </div>
+
+        <div class="row card">
+        <div class="col s12"
+        <p><label for="profession">Profession : </label>        <h6>{{ user_profession }}</h6></p>
+        <p><label for="jobdesignationlevel">Job Designation Level : </label>        <h6>{% if user_job_designation %}{{ user_job_designation}}{% else %} - {% endif %}</h6></p>
+        <p><label for="experience">Experience : </label>        <h6>{{ user_experience }}</h6></p>
+        <p><label for="industry">Industry : </label>        <h6>{% if user_industry %}{{ user_industry}}{% else %} - {% endif %}</h6></p>
+        <p><label for="company">Company : </label>        <h6>{% if user_company %}{{ user_company}}{% else %} - {% endif %}</h6></p>
+        <p><label for="phonenumber">Passionate About : </label>        <h6>{% if user_description %}{{ user_description}}{% else %} - {% endif %}</h6></p>
+        <br />
+        <a class="waves-effect waves-light btn" href="/seva/addprofession/">Edit Profession
+        <i class="material-icons right">mode_edit</i>
+        </a>
+        <br />
+        <br />
+        </div>
+      </div-->
+      </div>
+
+{% endblock %}

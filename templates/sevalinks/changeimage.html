@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/css/html5imageupload.css" type="text/css" rel="stylesheet" />
+  </head>
+<body> 
+	<form action="/seva/addimage/" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+	  <div class="dropzone" data-originalsize="false" data-width="200" data-ajax="false" data-height="200" data-button-zoomin="false" data-button-zoomout="false" data-button-reset="false" style="margin: 0 auto;">
+	    <input type="file" name="user_image" required="required" />
+	  </div>
+	  <button class="btn-block" type="submit" >Submit</button>
+	</form>
+  <!--  Scripts-->
+  	<script src="/static/js/jquery-3.1.1.min.js"></script>
+   	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="/static/js/html5imageupload.js"></script>
+	  {% if image_status == "success" %}
+	  <script type="text/javascript">
+	  window.top.location.reload();
+	  </script>
+	  {% endif %}
+	  <script type="text/javascript">
+	  $('.dropzone').html5imageupload();
+	  </script>	  
+  </body>  
+</html>

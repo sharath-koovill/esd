@@ -1,0 +1,436 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Maciej Marczewski <maciej@marczewski.net.pl>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-24 15:01+0200\n"
+"PO-Revision-Date: 2012-04-24 15:07+0200\n"
+"Last-Translator: Maciej Marczewski <maciej@marczewski.net.pl>\n"
+"Language-Team: Polish <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2)\n"
+"X-Generator: Lokalize 1.0\n"
+
+#: forms.py:19
+msgid "Message"
+msgstr "Wiadomość"
+
+#: forms.py:29 forms.py:86 forms.py:111
+msgid "Unknown user."
+msgstr "Nieznany użytkownik."
+
+#: forms.py:36
+msgid "You can't request friendship with yourself."
+msgstr "Nie możesz zaprosić sam siebie do znajomych."
+
+#: forms.py:40
+#, python-format
+msgid "You are already friends with %(username)s."
+msgstr "Już jesteście znajomymi z %(username)s."
+
+#: forms.py:45
+#, python-format
+msgid "You can't invite %(username)s to friends."
+msgstr "Nie możesz zaprosić użytkownika %(username)s do znajomych."
+
+#: forms.py:53
+#, python-format
+msgid "Already requested friendship with %(username)s."
+msgstr "Użytkownik %(username)s został już zaproszony do znajomych."
+
+#: forms.py:61
+#, python-format
+msgid "%(username)s has already requested friendship with you."
+msgstr "Użytkownik %(username)s zaprosił cię już do znajomych."
+
+#: forms.py:93
+#, python-format
+msgid "%(username)s and you are not friends."
+msgstr "Nie jesteście znajomymi z użytkownikiem %(username)s."
+
+#: forms.py:118
+#, python-format
+msgid ""
+"%(username)s and you are friends. You can't block user that is your friend."
+msgstr ""
+"Użytkownik %(username)s i ty jesteście znajomymi. Nie możesz zablokować "
+"użytkownika, który jest twoim znajomym."
+
+#: management.py:12
+msgid "Invitation received"
+msgstr "Otrzymano zaproszenie"
+
+#: management.py:12
+msgid "You have received an invitation."
+msgstr "Otrzymałeś zaproszenie."
+
+#: management.py:13
+msgid "Invitation sent"
+msgstr "Zaproszenie wysłano"
+
+#: management.py:13
+msgid "You have sent an invitation."
+msgstr "Wysłałeś zaproszenie."
+
+#: management.py:14
+msgid "Acceptance received"
+msgstr "Akceptacja otrzymana"
+
+#: management.py:14
+msgid "An invitation you sent has been accepted."
+msgstr "Zaproszenie, które wysłałeś zostało zaakceptowane."
+
+#: management.py:15
+msgid "Acceptance sent"
+msgstr "Akceptacja wysłana"
+
+#: management.py:15
+msgid "You have accepted an invitation you received."
+msgstr "Zaakceptowałeś otrzymane zaproszenie."
+
+#: management.py:17
+msgid "Other connection"
+msgstr "Znajomy znajomego"
+
+#: management.py:17
+msgid "One of your friends has a new friend."
+msgstr "Jeden z twoich znajomych ma nowego znajomego."
+
+#: management.py:19
+msgid "Friend removed"
+msgstr "Znajomy usunięty"
+
+#: management.py:19
+msgid "One person was removed from your friends."
+msgstr "Jedna osoba została usunięta ze znajomych."
+
+#: views.py:49
+msgid "I would like to add you to my friends."
+msgstr "Chciałbym dodać Cię do moich znajomych."
+
+#: views.py:58
+#, python-format
+msgid "Friendship invitation for %(username)s was created."
+msgstr ""
+"Zaproszenie do znajomych dla użytkownika %(username)s zostało utworzone."
+
+#: views.py:80
+#, python-format
+msgid "User %(username)s was removed from friends."
+msgstr "Użytkownik %(username)s został usunięty ze znajomych."
+
+#: views.py:102
+#, python-format
+msgid "User %(username)s was blocked from sending invitations."
+msgstr "Użytkownik %(username)s został zablokowany."
+
+#: views.py:124
+#, python-format
+msgid "User %(username)s was unblocked from sending invitations."
+msgstr "Użytkownik %(username)s został odblokowany."
+
+#: views.py:191
+msgid "Invitation deleted."
+msgstr "Zaproszenie usunięte."
+
+#: views.py:208
+msgid "Invitation accepted."
+msgstr "Zaproszenie zaakceptowane."
+
+#: views.py:211
+msgid "Invitation declined."
+msgstr "Zaproszenie odrzucone."
+
+#: contrib/suggestions/models.py:17
+msgid "from user"
+msgstr "od użytkownika"
+
+#: contrib/suggestions/models.py:18
+msgid "to user"
+msgstr "do użytkownika"
+
+#: contrib/suggestions/models.py:19 contrib/suggestions/models.py:40
+msgid "added"
+msgstr "dodano"
+
+#: contrib/suggestions/models.py:33
+msgid "owner"
+msgstr "właściciel"
+
+#: contrib/suggestions/models.py:35
+msgid "name"
+msgstr "nazwa"
+
+#: contrib/suggestions/models.py:38
+msgid "email"
+msgstr "email"
+
+#: contrib/suggestions/models.py:53
+#, python-format
+msgid "%(display_name)s (%(owner)s's contact)"
+msgstr "%(display_name)s (kontakt użytkownika %(owner)s)"
+
+#: contrib/suggestions/views.py:36
+#, python-format
+msgid ""
+"%(total)s contacts found, %(imported)s new contacts imported, %(suggestions)"
+"s new friendship suggestions added."
+msgstr ""
+"Znaleziono %(total)s kontaktów, zaimportowano %(imported)s nowych kontaktów, "
+"utworzono %(suggestions)s nowych sugestii znajomości."
+
+#: contrib/suggestions/views.py:38
+msgid "There was an error importing your contacts."
+msgstr "Podczas importowania twoich kontaktów wystąpił błąd."
+
+#: contrib/suggestions/views.py:41
+msgid "We're still importing your contacts. It shouldn't take too long."
+msgstr "Importowanie twoich kontaktów jest w toku. Nie potrwa to zbyt długo."
+
+#: contrib/suggestions/templates/friends/suggestions/import_contacts.html:4
+msgid "Import contacts"
+msgstr "Importowanie kontaktów"
+
+#: contrib/suggestions/templates/friends/suggestions/import_contacts.html:8
+msgid "Select service from which you want to import your contacts:"
+msgstr "Wybierz serwis, z którego chcesz zaimportować swoje kontakty:"
+
+#: contrib/suggestions/templates/friends/suggestions/import_contacts.html:17
+msgid ""
+"Import of your contacts is already running. Please wait until it finishes "
+"and then try again."
+msgstr ""
+"Importowanie twoich kontaktów jest w toku. Poczekaj do czasu kiedy się "
+"zakończy i spróbuj ponownie."
+
+#: contrib/suggestions/templates/friends/suggestions/suggested_friends.html:4
+msgid "Suggested friends"
+msgstr "Sugerowani znajomi"
+
+#: contrib/suggestions/templates/friends/suggestions/suggested_friends.html:9
+#: templates/friends/friends_of_friend.html:10
+msgid "invite to friends"
+msgstr "zaproś do znajomych"
+
+#: templates/friends/base.html:4 templates/friends/friends_list.html:4
+msgid "Friends"
+msgstr "Znajomi"
+
+#: templates/friends/blocked_users_list.html:4
+msgid "Blocked users"
+msgstr "Zablokowaniu użytkownicy"
+
+#: templates/friends/blocked_users_list.html:9
+msgid "unblock"
+msgstr "odblokuj"
+
+#: templates/friends/friend_invite.html:4
+#, python-format
+msgid "Invite %(friend)s to your friends"
+msgstr "Zaproś użytkownika %(friend)s do znajomych"
+
+#: templates/friends/friend_invite.html:11
+msgid "Invite"
+msgstr "Zaproś"
+
+#: templates/friends/friend_remove.html:4
+#, python-format
+msgid "Remove %(friend)s from your friends"
+msgstr "Usuń użytkownika %(friend)s ze znajomych"
+
+#: templates/friends/friend_remove.html:8
+#, python-format
+msgid "Are you sure you want to remove %(friend)s from your friends?"
+msgstr "Na pewno chcesz usunąć użytkownika %(friend)s ze znajomych?"
+
+#: templates/friends/friend_remove.html:12
+msgid "Remove"
+msgstr "Usuń"
+
+#: templates/friends/friends_list.html:9
+#: templates/friends/friends_of_friend.html:10
+msgid "remove from friends"
+msgstr "usuń ze znajomych"
+
+#: templates/friends/friends_of_friend.html:4
+#, python-format
+msgid "%(friend)s's friends"
+msgstr "Znajomi użytkownika %(friend)s"
+
+#: templates/friends/invitation_show.html:5
+#, python-format
+msgid "Friends request from %(from_user)s"
+msgstr "Zaproszenie do znajomych od użytkownika %(from_user)s"
+
+#: templates/friends/invitation_show.html:6
+#, python-format
+msgid "Friends request to %(to_user)s"
+msgstr "Zaproszenie do znajomych do użytkownika %(to_user)s"
+
+#: templates/friends/invitation_show.html:15
+msgid "Accept"
+msgstr "Zaakceptuj"
+
+#: templates/friends/invitation_show.html:16
+msgid "Decline"
+msgstr "Odrzuć"
+
+#: templates/friends/invitation_show.html:17
+msgid "Decline and block"
+msgstr "Odrzuć i zablokuj"
+
+#: templates/friends/invitation_show.html:20
+msgid "Delete"
+msgstr "Usuń"
+
+#: templates/friends/invitations_list.html:4
+msgid "Received invitations"
+msgstr "Otrzymane zaproszenia"
+
+#: templates/friends/invitations_list.html:4
+msgid "Sent invitations"
+msgstr "Wysłane zaproszenia"
+
+#: templates/friends/invitations_list.html:10
+msgid "From"
+msgstr "Od"
+
+#: templates/friends/invitations_list.html:10
+msgid "To"
+msgstr "Do"
+
+#: templates/friends/invitations_list.html:11
+msgid "Received"
+msgstr "Otrzymano"
+
+#: templates/friends/invitations_list.html:11
+msgid "Sent"
+msgstr "Wysłano"
+
+#: templates/friends/invitations_list.html:12
+msgid "Invitation"
+msgstr "Zaproszenie"
+
+#: templates/friends/invitations_list.html:22
+msgid "Details"
+msgstr "Szczegóły"
+
+#: templates/friends/user_block.html:4
+#, python-format
+msgid "Block %(blocked)s from sending invitations"
+msgstr "Zablokuj %(blocked)s"
+
+#: templates/friends/user_block.html:8
+#, python-format
+msgid ""
+"Are you sure you want to block %(blocked)s from sending you invitations?"
+msgstr ""
+"Na pewno chcesz zablokować użytkownikowi %(blocked)s możliwość wysyłania ci "
+"zaproszeń?"
+
+#: templates/friends/user_block.html:12
+msgid "Block"
+msgstr "Zablokuj"
+
+#: templates/notification/friends_accept/full.txt:1
+#, python-format
+msgid "%(invitation_to_user)s has accepted your friend request."
+msgstr ""
+"Użytkownik %(invitation_to_user)s zaakceptował twoje zaproszenie do "
+"znajomych."
+
+#: templates/notification/friends_accept/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_to_user)s</a> has accepted your friend "
+"request."
+msgstr ""
+"Użytkownik <a href=\"%(user_url)s\">%(invitation_to_user)s</a> zaakceptował "
+"twoje zaproszenie do znajomych."
+
+#: templates/notification/friends_accept_sent/full.txt:1
+#, python-format
+msgid "You accepted %(invitation_from_user)s's friend request."
+msgstr "Zaakceptowałeś zaproszenie użytkownika %(invitation_from_user)s."
+
+#: templates/notification/friends_accept_sent/notice.html:2
+#, python-format
+msgid ""
+"You accepted <a href=\"%(user_url)s\">%(invitation_from_user)s</a>'s friend "
+"request."
+msgstr ""
+"Zaakceptowałeś zaproszenie użytkownika <a href=\"%(user_url)s\">%"
+"(invitation_from_user)s</a>."
+
+#: templates/notification/friends_friend_removed/full.txt:2
+#, python-format
+msgid "%(removed_friend)s was removed from your friends."
+msgstr "Użytkownik %(removed_friend)s został usunięty ze znajomych."
+
+#: templates/notification/friends_friend_removed/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(removed_friend)s</a> was removed from your "
+"friends."
+msgstr ""
+"Użytkownik <a href=\"%(user_url)s\">%(removed_friend)s</a> został usunięty "
+"ze znajomych."
+
+#: templates/notification/friends_invite/full.txt:1
+#, python-format
+msgid ""
+"%(invitation_from_user)s has requested to add you as a friend. You can "
+"accept their invitation at:\n"
+"\n"
+"http://%(current_site)s%(invitations_page)s\n"
+msgstr ""
+"Użytkownik %(invitation_from_user)s poprosił cię o zgodę na dodanie do "
+"znajomych. Możesz zaakceptować zaproszenie tu:\n"
+"\n"
+"http://%(current_site)s%(invitations_page)s\n"
+
+#: templates/notification/friends_invite/notice.html:2
+#, python-format
+msgid ""
+"<a href=\"%(user_url)s\">%(invitation_from_user)s</a> has requested to add "
+"you as a friend (see <a href=\"%(invitations_page)s\">invitations</a>)."
+msgstr ""
+"Użytkownik <a href=\"%(user_url)s\">%(invitation_from_user)s</a> poprosił "
+"cię o zgodę na dodanie do znajomych (zobacz <a href=\"%(invitations_page)s"
+"\">zaproszenia</a>)."
+
+#: templates/notification/friends_invite_sent/full.txt:1
+#, python-format
+msgid "You have invited %(invitation_to_user)s to add you as a friend."
+msgstr "Zaprosiłeś użytkownika %(invitation_to_user)s do znajomych."
+
+#: templates/notification/friends_invite_sent/notice.html:2
+#, python-format
+msgid ""
+"You have invited <a href=\"%(user_url)s\">%(invitation_to_user)s</a> to add "
+"you as a friend."
+msgstr ""
+"Zaprosiłeś użytkownika <a href=\"%(user_url)s\">%(invitation_to_user)s</a> "
+"do znajomych."
+
+#: templates/notification/friends_otherconnect/full.txt:1
+#, python-format
+msgid "Your friend %(your_friend)s and %(new_friend)s are now friends."
+msgstr "Twój znajomy %(your_friend)s i %(new_friend)s są teraz znajomymi."
+
+#: templates/notification/friends_otherconnect/notice.html:2
+#, python-format
+msgid ""
+"Your friend <a href=\"%(your_friend_url)s\">%(your_friend)s</a> and <a href="
+"\"%(new_friend_url)s\">%(new_friend)s</a> are now friends."
+msgstr ""
+"Twój znajomy <a href=\"%(your_friend_url)s\">%(your_friend)s</a> i <a href="
+"\"%(new_friend_url)s\">%(new_friend)s</a> są teraz znajomymi."
+
+

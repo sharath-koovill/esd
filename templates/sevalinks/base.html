@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>{% block title %}Sevalinks{% endblock %}</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="/static/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="/static/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  {% block style_content %}
+  <style type="text/css">
+
+#id_location,#id_profession,#id_name {
+  height: 38px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+   }
+  #id_location:focus,#id_profession:focus,#id_name:focus{
+  border: 1px solid #33C3F0;
+  outline: 0; }
+  .tt-input, /* UPDATE: newer versions use tt-input instead of tt-query */
+  .tt-hint {
+    width: 396px;
+    height: 38px;
+    padding: 6px 10px;
+    font-size: 20px;
+    line-height: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.tt-input { /* UPDATE: newer versions use tt-input instead of tt-query */
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-hint {
+    color: #fff;
+}
+
+.tt-menu { /* UPDATE: newer versions use tt-menu instead of tt-dropdown-menu */
+    width: 422px;
+    margin-top: 10px;
+    padding: 8px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+    padding: 3px 10px;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.tt-suggestion.tt-cursor { /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
+    color: #fff;
+    background-color: #0097cf;
+
+}
+
+.tt-suggestion p {
+    margin: 0;
+}
+
+
+div.sevagrid {
+  margin: 0px;
+}
+
+ul.sevagrid  {
+  list-style-type: none;
+  width: 400px;
+}
+
+h4.sevagrid  {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+li img.sevagrid  {
+  width:100px;
+  height:100px;
+  float: left;
+  margin: 0 15px 0 0;
+  border-radius:50%;
+}
+
+li p.sevagrid  {
+  font-size: 12px;
+}
+
+li.sevagrid  {
+  padding: 10px;
+  overflow: auto;
+}
+
+li:hover.sevagrid  {
+  background: #29b6f6;
+  cursor: pointer;
+}
+
+li span.sevagrid  {
+  color: #94b8b8;
+  font-size: 10px;
+}
+
+</style>
+  {% endblock %}
+</head>
+<body>
+  <main>
+  	{% block top_menu %}
+  	<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">SevaLinks</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/seva/login/">Login</a></li>
+        <li><a href="/seva/register/">Register</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/seva/login/">Login</a></li>
+        <li><a href="/seva/register/">Register</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  	{% endblock %}
+
+	{% block main_content %}{% endblock %}
+</main>
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About Us</h5>
+          <p class="grey-text text-lighten-4">Sevalinks is a community where professionals and students of different skill levels from wide variety of fields and sectors come together to help, improve and empower each other so that you as professional or student will grow to improve your society and provide more jobs to one another and further improve the economy of our country.</p>
+
+          <!--p class="grey-text text-lighten-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p-->
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Others</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Contact us</a></li>
+            <li><a class="white-text" href="#!">Career</a></li>
+            <li><a class="white-text" href="#!">Terms</a></li>
+            <li><a class="white-text" href="#!">Privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="https://www.facebook.com/pages/Elemsys/1154732201224850">Facebook</a></li>
+            <li><a class="white-text" href="#!">Twitter</a></li>
+            <li><a class="white-text" href="#!">LinkedIn</a></li>
+            <li><a class="white-text" href="https://angel.co/elemsys">AngelList</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://www.elemsys.com/">Elemsys India</a>
+      </div>
+    </div>
+  </footer>
+  <!--  Scripts-->
+  <script src="/static/js/jquery-3.1.1.min.js"></script>
+  <script src="/static/js/materialize.js"></script>
+  <script src="/static/js/init.js"></script>
+  <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>  
+  {% block js_content %}{% endblock %}
+  </body>
+</html>

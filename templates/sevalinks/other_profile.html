@@ -1,0 +1,168 @@
+{% extends "sevalinks/base.html" %}
+
+{% block title %}Sevalinks - {{ first_name }} {{ last_name }}{% endblock %}
+
+{% block top_menu %}
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">SevaLinks</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/seva/myaccount/">My Account</a></li>
+        <li class="active"><a href="/contacts/connections/">Connections</a></li>
+        <li><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+      	<li><a href="/seva/myaccount/">My Account</a></li>
+      	<li class="active"><a href="/contacts/connections/">Connections</a></li>
+        <li><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  {% endblock %}
+
+{% block main_content %}
+   <div class="row">
+   	</div>
+
+  <div class="container">
+  	<div class="row">
+    <div class="col s12 card light-blue darken-1" style="height: 300px;background-image: url(/static/images/user-profile-bg.jpg)">
+    	<div class="row">
+    	<div class="col s3">
+    	<div class="card-image waves-effect waves-block waves-light">
+    		<br><br>
+		      <img class="center-align" style="width:150px;height:150px;margin: 0 auto;border-radius:50%;margin-top:10px;" src="/static/userimages/{% if user_image %}{{ user_image}}{% else %}default_user.png{% endif %}">
+		</div>
+    </div>
+    	<div class="col s9">
+
+    	</div>
+    	</div>
+    	<div class="row">
+    		<div class="col s3" style="text-align: center;">
+    		<span class="card-title center-align grey-text text-lighten-4" >Sharath Koovill</span>
+    		</div>
+    	</div>
+    </div>
+    </div>
+    <!--profession card -->
+    <div class="row">
+        <div class="col s9">
+          <div class="card grey lighten-4">
+            <div class="card-content black6-text">
+              <ul class="collapsible" data-collapsible="accordion">
+              <li>
+                <div class="collapsible-header"><i class="material-icons">place</i>Location</div>
+                <div class="collapsible-body">
+                  <ul class="collection">
+                    <li class="collection-item"><label>Country : </label> India{{ user_country }}</li>
+                    <li class="collection-item"><label>State : </label> {{ user_state }}</li>
+                    <li class="collection-item"><label>Area : </label> {{ user_area }}</li>
+                    <li class="collection-item"><label>Pincode : </label> {{ user_postcode }}</li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">work</i>Profession</div>
+                <div class="collapsible-body">
+                  <ul class="collection">
+                    <li class="collection-item"><label >Profession : </label>{{ user_profession }}</li>
+                    <li class="collection-item"><label >Job Designation Level : </label> {% if user_job_designation %}{{ user_job_designation}}{% else %} - {% endif %}</li>
+                    <li class="collection-item"><label >Experience : </label>{{ user_experience }}</li>
+                    <li class="collection-item"><label >Industry : </label>{% if user_industry %}{{ user_industry}}{% else %} - {% endif %}</li>
+                    <li class="collection-item"><label >Company : </label>{% if user_company %}{{ user_company}}{% else %} - {% endif %}</li>
+                    <li class="collection-item"><label >Passionate About : </label>{% if user_description %}{{ user_description}}{% else %} - {% endif %}</li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <div class="collapsible-header"><i class="material-icons">class</i>Education</div>
+                <div class="collapsible-body">
+                  <ul class="collection">
+                    <li class="collection-item"><label >College : </label>Vishveswaraya Technological University, Belgaum{{ user_college }}</li>
+                    <li class="collection-item"><label >From year: </label> 2006{{ user_college_start }}</li>
+                    <li class="collection-item"><label >To year : </label> 2010{{ user_college_end }}</li>
+                    <li class="collection-item"><label >Description : </label> Bachelors in Electronics and Communication{{ user_description }}</li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+            </div>
+          </div>
+          <div class="card light-blue darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Passionate About</span>
+              <p>I am a very Passionate about drawing portraits of people in the park. I have been painting for almost
+              5 years. This passion has brought lot of knowledge regarding various painting techniques.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col s3">
+          <div class="card grey lighten-4">
+            <div class="card-content black6-text">
+              <p>Sharath Koovill{{ first_name }} {{ last_name }} has 150+ connections</p>
+            </div>
+          </div>
+          <div class="card grey lighten-4">
+            <div class="card-content black6-text">
+              <p>You are a Network Connection to Sharath Koovill{{ first_name }} {{ last_name }}</p>
+              <button class="btn-flat waves-effect waves-light grey lighten-2" >Block</button>
+            </div>
+          </div>
+          <div class="card grey lighten-4">
+            <div class="card-content orange-text">
+              <span class="card-title">Social Media</span>
+              <p>Facebook</p>
+              <p>Twitter</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+  </div>
+
+{% endblock %}
+
+{% block js_content %}
+<script type="text/javascript" src="/static/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript" src="/static/js/search.js"></script>
+<script type="text/javascript">
+   var cities = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+
+  prefetch: '/static/js/cities.json'
+});
+
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#prefetch .location').typeahead(null, {
+  name: 'cities',
+  source: cities
+});
+</script>
+<script type="text/javascript">
+   var profession = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+
+  prefetch: '/static/js/profession.json'
+});
+
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#prefetch_profession .profession').typeahead(null, {
+  name: 'profession',
+  source: profession
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+{% endblock %}

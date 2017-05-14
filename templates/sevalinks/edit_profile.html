@@ -1,0 +1,52 @@
+{% extends "sevalinks/account_base.html" %}
+
+{% block title %}Sevalinks - Edit Profile{% endblock %}
+
+{% block account_content %}
+      <div class="col s12 m8 l9">       
+        <form class="col s12" action="/seva/editprofile/" method="post">
+  		{% csrf_token %}  	
+  		<div class="col s12">
+			<p style="height:10px;color: #f44242;">{{ validation_error }}</p>
+		</div>
+		<div class="col s12">
+  		<div class="col s6">  		
+		  	<h5 class="header center orange-text">Edit Profile</h5>
+	    </div>
+	    </div>
+  		<div class="col s12"> 		
+	  	<div class="input-field col s6">	  	  
+	      <input id="id_first_name" name="first_name" value="{{ first_name }}" type="text" class="validate">
+	      <label for="id_first_name">First Name</label>
+	    </div>	    
+	    </div>
+	    <div class="col s12"> 		
+	  	<div class="input-field col s6">	  	  
+	      <input id="id_last_name" name="last_name" value="{{ last_name }}" type="text" class="validate">
+	      <label for="id_last_name">Last Name</label>
+	    </div>	    
+	    </div>
+	   	<div class="col s12">	
+	  	<div class="input-field col s6">	  	  
+	      <input id="id_phone_number" type="number" name="phone_number" value="{{ phone_number }}" class="validate">
+	      <label for="id_phone_number">Phone Number</label>
+	    </div>	    
+	    </div>
+	    <div class="col s12">
+	    	<br />
+	    	<input name="hidden_first_name" value="{{ first_name }}" type="hidden">
+	    	<input name="hidden_last_name" value="{{ last_name }}" type="hidden">
+	    	<input name="hidden_phone_number" value="{{ phone_number }}" type="hidden">	  	
+	    </div>
+	    <div class="col s12">
+	    <div class="input-field col s6">
+	    	<a class="waves-effect waves-light btn" href="/seva/myaccount/" ><i class="material-icons">fast_rewind</i></a>
+		    <button class="btn waves-effect waves-light" type="submit" name="action">Update
+	    	<i class="material-icons right">send</i>
+	  		</button>
+  		</div>    
+    	</div>
+    </form>
+      </div>
+
+{% endblock %}

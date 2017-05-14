@@ -1,0 +1,203 @@
+{% extends "sevalinks/base.html" %}
+
+{% block title %}Sevalinks - {{ first_name }}{% endblock %}
+
+{% block top_menu %}
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">SevaLinks</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/seva/myaccount/">My Account</a></li>
+        <li><a href="/contacts/connections/">Connections</a></li>
+        <li class="active"><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+      	<li><a href="/seva/myaccount/">My Account</a></li>
+        <li><a href="/contacts/connections/">Connections</a></li>
+        <li class="active"><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  <div class="container">
+ 	<div class="row">
+ 		<br />
+ 		<div class="col s1 right">
+ 			<i class="material-icons">account_circle</i>
+ 		</div>
+ 		<div class="right">
+ 			<label>Welcome </label><label class="blue-text text-lighten-1">{{ first_name }} {{ last_name }}</label>
+ 		</div>
+ 	</div>
+ </div>
+
+  <div class="container">
+    <div class="row">
+    	<div class="col s1">
+    		</div>
+      	<div class="col s3" id="prefetch_profession">
+      	  <label for="id_profession">Profession</label>
+	      <i class="material-icons prefix">work</i>
+	      <input placeholder="Eg. teacher" id="id_profession" type="text" class="profession">
+	    </div>
+	    <div class="col s3">
+	    	<label for="id_name">Name</label>
+	    	<i class="material-icons prefix">person_pin</i>
+	      <input placeholder="Eg. Walter" id="id_name" type="text" class="name">
+	    </div>
+	    <div class="col s3" id="prefetch">
+	    	<label for="id_location">Location</label>
+	    	<i class="material-icons prefix">location_on</i>
+	      <input placeholder="Eg. mangaluru" id="id_location" type="text" class="location">
+	    </div>
+	    <div class="input-field col s2">
+	      <a href="#" id="search_button" class="btn-large waves-effect waves-light orange">Find</a>
+	     </div>
+    </div>
+    <div class="divider"></div>
+  </div>
+
+{% endblock %}
+
+{% block main_content %}
+<div class="container">
+<div class="row">
+	<div class="row">
+	<br />
+	<div class="col s1">
+	</div>
+	<div class="chip">
+	    Search :
+	</div>
+	{% if not searchName and not searchProfession and not searchLocation %}
+	<div class="chip">
+	    None
+	</div>
+	{% endif %}
+	{% if searchName %}
+	<div class="chip">
+	    {{searchName}}
+	    <i class="close material-icons">close</i>
+	</div>
+	{% endif %}
+	{% if searchProfession %}
+	<div class="chip">
+	    {{searchProfession}}
+	    <i class="close material-icons">close</i>
+	</div>
+	{% endif %}
+	{% if searchLocation %}
+	<div class="chip">
+	    {{searchLocation}}
+	    <i class="close material-icons">close</i>
+	</div>
+	{% endif %}
+	</div>
+<div class="row">
+<div class="col s6 sevagrid">
+  <ul class="sevagrid">
+    <li class="sevagrid">
+      <img class="sevagrid" src="/static/userimages/default_user.png" />
+      <h4 class="sevagrid">Ratan Tata</h4>
+      <p class="sevagrid">CEO, Industrialist, TATA Sons, Mumbai</p>
+      <span class="sevagrid">Premium member</span>
+    </li>
+   </ul>
+</div>
+<div class="col s6 sevagrid">
+  <ul class="sevagrid">
+    <li class="sevagrid">
+      <img class="sevagrid" src="/static/userimages/default_user.png" />
+      <h4 class="sevagrid">Simon Perriera</h4>
+      <p class="sevagrid">Doctor, Health, Apollo Hospitals, Mumbai</p>
+      <span class="sevagrid">Premium member</span>
+    </li>
+   </ul>
+</div>
+<div class="col s6 sevagrid">
+  <ul class="sevagrid">
+    <li class="sevagrid">
+      <img class="sevagrid" src="/static/userimages/default_user.png" />
+      <h4 class="sevagrid">Mukesh Deshpande</h4>
+      <p class="sevagrid">Other, Owner, Mukesh Hotels, Mumbai</p>
+      <span class="sevagrid">Premium member</span>
+    </li>
+   </ul>
+</div>
+<div class="col s6 sevagrid">
+  <ul class="sevagrid">
+    <li class="sevagrid">
+      <img class="sevagrid" src="/static/userimages/default_user.png" />
+      <h4 class="sevagrid">Sheikh Abdulla</h4>
+      <p class="sevagrid">CFO, Finance, Abdulla finances, Mumbai</p>
+      <!--span class="sevagrid">Premium member</span-->
+      <span class="sevagrid"><a class="waves-effect waves-light btn"><i class="material-icons right">add</i>Request</a></span>
+    </li>
+   </ul>
+</div>
+{% for eachUser in searchResults  %}
+<div class="col s6 sevagrid" >
+  <ul class="sevagrid">
+    <li class="sevagrid">
+      <img class="sevagrid" src="/static/userimages/{% if eachUser.user_image %}{{ eachUser.user_image }}{% else %}default_user.png{% endif %}" />
+      <h4 class="sevagrid">{{ eachUser.first_name }} {{ eachUser.last_name }}</h4>
+      <p class="sevagrid">{{ eachUser.user_profession }}, {{ eachUser.user_area }}</p>
+      <span class="sevagrid"><a href="/contacts/profile/?user={{ eachUser.username }}">View Profile</a></span>
+      <!--a class="btn-floating btn-large waves-effect waves-light green" href="/contacts/profile/?user={{ eachUser.username }}"><i class="material-icons">fast_forward</i></a-->
+      <!--span class="sevagrid">Premium member</span-->
+    </li>
+   </ul>
+</div>
+{% endfor %}
+</div>
+
+<div class="divider"></div>
+</div>
+
+<div class="row">
+</div>
+
+
+</div>
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+{% endblock %}
+{% block js_content %}
+<script type="text/javascript" src="/static/js/typeahead.bundle.min.js"></script>
+<script type="text/javascript" src="/static/js/search.js"></script>
+<script type="text/javascript">
+   var cities = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+
+  prefetch: '/static/js/cities.json'
+});
+
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#prefetch .location').typeahead(null, {
+  name: 'cities',
+  source: cities
+});
+</script>
+<script type="text/javascript">
+   var profession = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.whitespace,
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+
+  prefetch: '/static/js/profession.json'
+});
+
+// passing in `null` for the `options` arguments will result in the default
+// options being used
+$('#prefetch_profession .profession').typeahead(null, {
+  name: 'profession',
+  source: profession
+});
+</script>
+{% endblock %}

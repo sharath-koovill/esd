@@ -1,0 +1,12 @@
+{% extends 'friends/base.html' %}
+{% load i18n %}
+
+{% block friends_title %}{% trans "Friends" %}{% endblock %}
+
+{% block friends_content %}
+<ul>
+{% for friend in friends %}
+	<li><a href="{% url 'profile_detail' username=friend.username %}">{{ friend }}</a> (<a href="{% url 'friends_remove' friend.username %}">{% trans "remove from friends" %}</a>)</li>
+{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "sevalinks/base.html" %}
+
+{% block title %}Sevalinks - Network Connections{% endblock %}
+
+{% block top_menu %}
+<nav class="nav-extended light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">SevaLinks</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/seva/myaccount/">My Account</a></li>
+        <li class="active"><a href="/contacts/connections/">Connections</a></li>
+        <li><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+      	<li><a href="/seva/myaccount/">My Account</a></li>
+      	<li class="active"><a href="/contacts/connections/">Connections</a></li>
+        <li><a href="/seva/userhome/">Home</a></li>
+        <li><a href="/seva/logout/">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+      <div class="nav-content" >
+        <ul class="tabs tabs-transparent">
+          <li class="tab"><a class="active" href="/contacts/connections/">My Connections</a></li>
+          <li class="tab"><a href="/contacts/invitations/">Invitations</a></li>
+          <li class="tab"><a href="/contacts/blocked/">Blocked List</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% endblock %}
+
+{% block main_content %}
+   <div class="row">
+   	</div>
+
+<div class="container">
+  <div class="row" id="root">
+    <div class="col s6 sevagrid">
+      <ul class="sevagrid">
+        <li class="sevagrid">
+          <img class="sevagrid" src="/static/userimages/default_user.png" />
+          <h4 class="sevagrid">Ratan Tata</h4>
+          <p class="sevagrid">CEO, Industrialist, TATA Sons, Mumbai</p>
+          <span class="sevagrid">Premium member</span>
+        </li>
+       </ul>
+    </div>
+    <div class="col s6 sevagrid">
+      <ul class="sevagrid">
+        <li class="sevagrid">
+          <img class="sevagrid" src="/static/userimages/default_user.png" />
+          <h4 class="sevagrid">Simon Perriera</h4>
+          <p class="sevagrid">Doctor, Health, Apollo Hospitals, Mumbai</p>
+          <span class="sevagrid">Premium member</span>
+        </li>
+       </ul>
+    </div>
+    <div class="col s6 sevagrid">
+      <ul class="sevagrid">
+        <li class="sevagrid">
+          <img class="sevagrid" src="/static/userimages/default_user.png" />
+          <h4 class="sevagrid">Mukesh Deshpande</h4>
+          <p class="sevagrid">Other, Owner, Mukesh Hotels, Mumbai</p>
+          <span class="sevagrid">Premium member</span>
+        </li>
+       </ul>
+    </div>
+    <div class="col s6 sevagrid">
+      <ul class="sevagrid">
+        <li class="sevagrid">
+          <img class="sevagrid" src="/static/userimages/default_user.png" />
+          <h4 class="sevagrid">Sheikh Abdulla</h4>
+          <p class="sevagrid">CFO, Finance, Abdulla finances, Mumbai</p>
+          <span class="sevagrid">Premium member</span>
+        </li>
+       </ul>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block js_content %}
+<script src="/static/js/sevalinks.js"></script>  
+<script type="text/javascript">
+</script>
+{% endblock %}
