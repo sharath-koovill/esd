@@ -18,7 +18,7 @@ def home(request):
         return redirect("/seva/userhome/")
     else:
         return render(request, "sevalinks/home.html")
-    
+
 def change_image_render(request):
     if utils.authenticate_session(request):
         return render(request, "sevalinks/changeimage.html")
@@ -38,25 +38,25 @@ def user_login(request):
             if utils.authenticate_user(loginInfo["email"], loginInfo["password"]):
                 userInfo = utils.get_user_as_dict(loginInfo["email"])
                 request.session["user_id"] = userInfo["user_id"]
-                return redirect("/seva/userhome/")            
-    else:        
-        return render(request, "sevalinks/login.html")        
-    
-    contextDict['validation_error'] = validation_error        
+                return redirect("/seva/userhome/")
+    else:
+        return render(request, "sevalinks/login.html")
+
+    contextDict['validation_error'] = validation_error
     return render(request, "sevalinks/login.html", contextDict)
 
 def user_register(request):
     contextDict = {}
     if request.method == "POST":
         print request.POST
-        regForm = forms.UserRegisterForm(request.POST)          
+        regForm = forms.UserRegisterForm(request.POST)
         if regForm.is_valid():
-            contextDict = regForm.cleaned_data                       
+            contextDict = regForm.cleaned_data
             regStatus = utils.validate_user(contextDict)
             if regStatus == 1:
                 print "====saving user===="
                 if settings.REG_EMAIL_CONFIRM:
-                    utils.save_user(contextDict)                                   
+                    utils.save_user(contextDict)
                     confirmId = utils.create_random_identifier()
                     user = utils.get_user_as_dict(contextDict["email"])
                     utils.add_confirmation_id(user["user_id"], confirmId)
@@ -71,11 +71,11 @@ def user_register(request):
             contextDict = request.POST.dict()
             contextDict['validation_error'] = "Empty field or invalid input"
     else:
-        regForm = forms.UserRegisterForm()   
-    
+        regForm = forms.UserRegisterForm()
+
     contextDict['formtype'] = "register"
     return render(request, "sevalinks/user_registeration.html", contextDict)
-    
+
 def user_account(request):
     userId = request.session["user_id"]
     contextDict = utils.get_user_with_id(userId)
@@ -84,7 +84,7 @@ def user_account(request):
     contextDict.update(utils.get_user_image_as_dict(userId))
     return render(request, "sevalinks/user_account.html", contextDict)
 
-def confirm_render(request):    
+def confirm_render(request):
     return render(request, "sevalinks/user_confirmation.html")
 
 def confirm_success(request):
@@ -100,16 +100,16 @@ def confirm_success(request):
             userConfirm.save()
             request.session["user_id"] = str(userConfirm.user_id_id)
             return render(request, "sevalinks/user_confirmed.html")
-    
+
     return redirect("/404/")
-    
+
 
 def edit_profile_render(request):
     contextDict = {}
     userId = request.session.get("user_id")
     if not userId:
         logout(request)
-        return redirect("/seva/login/")    
+        return redirect("/seva/login/")
     contextDict = utils.get_user_with_id(userId)
     return render(request, "sevalinks/edit_profile.html", contextDict)
 
@@ -148,7 +148,7 @@ def reset_password(request):
         editInfo = request.POST.dict()
         if editInfo["password"] != editInfo["confirm_password"]:
             contextDict['validation_error'] = "Passwords do not match"
-        else:            
+        else:
             userData = {"user_id": str(userReset.user_id), "password": hashPass.hash(editInfo["password"])}
             utils.update_user(userData, userFields=["password"])
             userReset.password_reset = True
@@ -157,6 +157,22 @@ def reset_password(request):
             contextDict["reset_success"] = "success"
             logout(request)
     return render(request, "sevalinks/reset_password.html", contextDict)
+
+def change_password(request):
+    contextDict = {}
+    userId = request.session.get("user_id", "")
+    if userId == "":
+        return redirect("/404/")
+
+    if request.method == "POST":
+        editInfo = request.POST.dict()
+        if editInfo["password"] != editInfo["confirm_password"]:
+            contextDict['validation_error'] = "Passwords do not match"
+        else:
+            userData = {"user_id": userId, "password": hashPass.hash(editInfo["password"])}
+            utils.update_user(userData, userFields=["password"])
+            contextDict["reset_success"] = "success"
+    return render(request, "sevalinks/change_password.html", contextDict)
 
 def reset_password_request(request):
     contextDict = {}
@@ -181,7 +197,7 @@ def forgot_password(request):
     return render(request, "sevalinks/forgot_password.html", contextDict)
 
 def user_logout(request):
-    logout(request)    
+    logout(request)
     return redirect("/")
 
 def user_subscriptions(request):
@@ -195,4 +211,3 @@ def sevalinks_404(request):
 
 def sevalinks_500(request):
     return render(request, "sevalinks/sevalinks_500.html")
-

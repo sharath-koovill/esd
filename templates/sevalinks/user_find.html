@@ -5,37 +5,37 @@
 {% block top_menu %}
   	<nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">SevaLinks</a>
-      <ul class="right hide-on-med-and-down">        
+      <ul class="right hide-on-med-and-down">
         <li><a href="/seva/login/">Login</a></li>
         <li><a href="/seva/register/">Register</a></li>
       </ul>
 
-      <ul id="nav-mobile" class="side-nav">        
+      <ul id="nav-mobile" class="side-nav">
         <li><a href="/seva/login/">Login</a></li>
         <li><a href="/seva/register/">Register</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
-  </nav> 
-  <br><br>  
+  </nav>
+  <br><br>
   <div class="container">
     <div class="row">
     	<div class="col s1">
-    		</div>    	
+    		</div>
       	<div class="col s3" id="prefetch_profession">
       	  <label for="id_profession">Profession</label>
-	      <i class="material-icons prefix">work</i>	    		      
-	      <input placeholder="Eg. teacher" id="id_profession" type="text" class="profession">      	
+	      <i class="material-icons prefix">work</i>
+	      <input placeholder="Eg. teacher" id="id_profession" type="text" class="profession">
 	    </div>
 	    <div class="col s3">
 	    	<label for="id_name">Name</label>
-	    	<i class="material-icons prefix">person_pin</i>	  	  
-	      <input placeholder="Eg. Walter" id="id_name" type="text" class="name">	      
+	    	<i class="material-icons prefix">person_pin</i>
+	      <input placeholder="Eg. Walter" id="id_name" type="text" class="name">
 	    </div>
 	    <div class="col s3" id="prefetch">
 	    	<label for="id_location">Location</label>
-	    	<i class="material-icons prefix">location_on</i>	    		      
-	      <input placeholder="Eg. mangaluru" id="id_location" type="text" class="location">	      
+	    	<i class="material-icons prefix">location_on</i>
+	      <input placeholder="Eg. mangaluru" id="id_location" type="text" class="location">
 	    </div>
 	    <div class="input-field col s2">
 	      <a href="#" id="search_button" class="btn-large waves-effect waves-light orange">Find</a>
@@ -44,7 +44,7 @@
     <div class="divider"></div>
   </div>
 {% endblock %}
-  	  
+
 {% block main_content %}
 <div class="container">
 <div class="row">
@@ -53,11 +53,11 @@
 	<div class="col s1">
 	</div>
 	<div class="chip">
-	    Search :    
+	    Search :
 	</div>
 	{% if not searchName and not searchProfession and not searchLocation %}
 	<div class="chip">
-	    None	    
+	    None
 	</div>
 	{% endif %}
 	{% if searchName %}
@@ -80,7 +80,7 @@
 	{% endif %}
 	</div>
 <div class="row">
-<div class="col s6 sevagrid">
+<!-- <div class="col s6 sevagrid">
   <ul class="sevagrid">
     <li class="sevagrid">
       <img class="sevagrid" src="/static/userimages/default_user.png" />
@@ -119,17 +119,16 @@
       <span class="sevagrid">Premium member</span>
     </li>
    </ul>
-</div>
+</div> -->
+
 {% for eachUser in searchResults  %}
-<div class="col s6 sevagrid">
-  <ul class="sevagrid">
-    <li class="sevagrid">
-      <img class="sevagrid" src="/static/userimages/{% if eachUser.user_image %}{{ eachUser.user_image }}{% else %}default_user.png{% endif %}" />
-      <h4 class="sevagrid">{{ eachUser.first_name }} {{ eachUser.last_name }}</h4>
-      <p class="sevagrid">{{ eachUser.user_profession }}, {{ eachUser.user_area }}</p>
-      <!--span class="sevagrid">Premium member</span-->
-    </li>
-   </ul>
+<div class="userchip">
+<img src="/static/userimages/{% if eachUser.user_image %}{{ eachUser.user_image }}{% else %}default_user.png{% endif %}" />
+  <div>
+    <a href="javascript: void(0)">{{ eachUser.first_name }} {{ eachUser.last_name }}</a>
+    <label>{{ eachUser.user_profession }}, {{ eachUser.user_area }}</label>
+    <span>{{eachUser.subscription_name}}</span>
+  </div>
 </div>
 {% endfor %}
 </div>
@@ -138,14 +137,14 @@
 </div>
 
 <div class="row">
-</div>   
-	
+</div>
 
-</div>	
+
+</div>
 <br><br>
 <br><br>
 <br><br>
-<br><br>	
+<br><br>
 {% endblock %}
 {% block js_content %}
 <script type="text/javascript" src="/static/js/typeahead.bundle.min.js"></script>
@@ -154,7 +153,7 @@
    var cities = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  
+
   prefetch: '/static/js/cities.json'
 });
 
@@ -169,7 +168,7 @@ $('#prefetch .location').typeahead(null, {
    var profession = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  
+
   prefetch: '/static/js/profession.json'
 });
 

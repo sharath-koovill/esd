@@ -81,6 +81,11 @@ def get_user_image_as_dict(userId):
         return user[0]   
     return {}    
 
+def get_userid_from_identifier(identifier):
+    user = models.User.objects.filter(user_identifier=identifier).values()
+    print user
+    return user[0]["user_id"]
+    
 def save_user(userData):
     hashedPass = hashPass.hash(userData["password"])
     user = models.User(first_name=(userData["first_name"]).title(), last_name=(userData["last_name"]).title(), 

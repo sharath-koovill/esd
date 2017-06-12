@@ -117,6 +117,48 @@ li span.sevagrid  {
   font-size: 10px;
 }
 
+.userchip {
+    display: inline-block;
+    padding: 0 25px;
+    height: 100px;
+    width:280px;
+    border-radius: 50px;
+    background-color: #f1f1f1;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.userchip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+.userchip div {
+  float: right;
+  width:130px;
+	padding-top:15px;
+}
+
+.userchip div a {
+	padding-top:20px;
+    font-size: 15px;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+.userchip div label {
+    font-size: 12px;
+    padding-top:5px;
+    display: block;
+}
+
+.userchip div span {
+    font-size: 10px;
+}
+
 </style>
   {% endblock %}
 </head>
@@ -183,7 +225,10 @@ li span.sevagrid  {
   <script src="/static/js/materialize.js"></script>
   <script src="/static/js/init.js"></script>
   <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
-  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>  
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+  <script src="/static/js/browser.min.js"></script>
+  <script src="/static/js/handlebars-v4.0.10.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
   {% block js_content %}{% endblock %}
   </body>
 </html>

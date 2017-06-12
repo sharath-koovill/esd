@@ -21,9 +21,9 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
       <div class="nav-content" >
         <ul class="tabs tabs-transparent">
-          <li class="tab"><a class="active" href="/contacts/connections/">My Connections</a></li>
-          <li class="tab"><a href="/contacts/invitations/">Invitations</a></li>
-          <li class="tab"><a href="/contacts/blocked/">Blocked List</a></li>
+          <li class="tab"><a class="active" href="#" onclick="getConnections()" >My Connections</a></li>
+          <li class="tab"><a href="#" onclick="getInvitations()" >Invitations</a></li>
+          <li class="tab"><a href="#" onclick="getBlockedUsers()" >Blocked List</a></li>
         </ul>
       </div>
     </div>
@@ -35,8 +35,9 @@
    	</div>
 
 <div class="container">
-  <div class="row" id="root">
-    <div class="col s6 sevagrid">
+  <div class="row" id="user_container">
+  <!--div class="row">
+    < <div class="col s6 sevagrid">
       <ul class="sevagrid">
         <li class="sevagrid">
           <img class="sevagrid" src="/static/userimages/default_user.png" />
@@ -76,13 +77,25 @@
         </li>
        </ul>
     </div>
-  </div>
+  </div -->
 </div>
-
+</div>
+{% verbatim %}
+<script id="connection-template" type="text/x-handlebars-template">
+  <div class="userchip">
+  <img src="/static/userimages/{{u_user_image}}" onerror="this.src = '/static/userimages/default_user.png';"/>
+    <div>
+      <a href="/contacts/profile/?user={{u_user_identifier}}">{{u_first_name}} {{u_last_name}}</a>
+      <label>{{u_user_profession}}, {{u_user_area}}</label>
+      <span>{{u_subscription_name}}</span>
+    </div>
+ </div>
+</script>
+{% endverbatim %}
 {% endblock %}
 
 {% block js_content %}
-<script src="/static/js/sevalinks.js"></script>  
+<script src="/static/js/sevalinks.js"></script>
 <script type="text/javascript">
 </script>
 {% endblock %}

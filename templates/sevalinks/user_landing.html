@@ -96,7 +96,55 @@
 	{% endif %}
 	</div>
 <div class="row">
-<div class="col s6 sevagrid">
+  <!-- <div class="userchip">
+  <img src="/static/userimages/default_user.png" />
+    <div>
+      <a href="/contacts/profile/?user={{ eachUser.username }}">Ratan Tata</a>
+      <label>Industrialist, Mumbai</label>
+      <span>Premium member</span>
+    </div>
+ </div>
+ <div class="userchip">
+ <img src="/static/userimages/default_user.png" />
+   <div>
+     <a href="/contacts/profile/?user={{ eachUser.username }}">Ratan Tata</a>
+     <label>Industrialist, Mumbai</label>
+     <span></span>
+   </div>
+</div>
+<div class="userchip">
+<img src="/static/userimages/default_user.png" />
+  <div>
+    <a href="/contacts/profile/?user={{ eachUser.username }}">Ratan Tata</a>
+    <label>Industrialist, Mumbai</label>
+    <span>Premium member</span>
+  </div>
+</div>
+<div class="userchip">
+<img src="/static/userimages/default_user.png" />
+  <div>
+    <a href="/contacts/profile/?user={{ eachUser.username }}">Ratan Tata</a>
+    <label>Industrialist, Mumbai</label>
+    <span></span>
+  </div>
+</div>
+<div class="userchip">
+<img src="/static/userimages/default_user.png" />
+  <div>
+    <a href="/contacts/profile/?user={{ eachUser.username }}">Ratan Tata</a>
+    <label>Industrialist, Mumbai</label>
+    <span>Premium member</span>
+  </div>
+</div>
+<div class="userchip">
+<img src="/static/userimages/default_user.png" />
+  <div>
+    <a href="/contacts/profile/?user={{ eachUser.username }}">Ratan Tata</a>
+    <label>Industrialist, Mumbai</label>
+    <span>Premium member</span>
+  </div>
+</div> -->
+<!-- <div class="col s6 sevagrid">
   <ul class="sevagrid">
     <li class="sevagrid">
       <img class="sevagrid" src="/static/userimages/default_user.png" />
@@ -132,24 +180,32 @@
       <img class="sevagrid" src="/static/userimages/default_user.png" />
       <h4 class="sevagrid">Sheikh Abdulla</h4>
       <p class="sevagrid">CFO, Finance, Abdulla finances, Mumbai</p>
-      <!--span class="sevagrid">Premium member</span-->
-      <span class="sevagrid"><a class="waves-effect waves-light btn"><i class="material-icons right">add</i>Request</a></span>
+      <span class="sevagrid">Premium member</span-->
+      <!--span class="sevagrid"><a class="waves-effect waves-light btn"><i class="material-icons right">add</i>Request</a></span>
     </li>
    </ul>
-</div>
+</div> -->
 {% for eachUser in searchResults  %}
-<div class="col s6 sevagrid" >
+<div class="userchip">
+<img src="/static/userimages/{% if eachUser.user_image %}{{ eachUser.user_image }}{% else %}default_user.png{% endif %}" />
+  <div>
+    <a href="/contacts/profile/?user={{ eachUser.user_identifier }}">{{ eachUser.first_name }} {{ eachUser.last_name }}</a>
+    <label>{{ eachUser.user_profession }}, {{ eachUser.user_area }}</label>
+    <span>{{eachUser.subscription_name}}</span>
+  </div>
+</div>
+<!-- <div class="col s6 sevagrid" >
   <ul class="sevagrid">
     <li class="sevagrid">
       <img class="sevagrid" src="/static/userimages/{% if eachUser.user_image %}{{ eachUser.user_image }}{% else %}default_user.png{% endif %}" />
       <h4 class="sevagrid">{{ eachUser.first_name }} {{ eachUser.last_name }}</h4>
       <p class="sevagrid">{{ eachUser.user_profession }}, {{ eachUser.user_area }}</p>
       <span class="sevagrid"><a href="/contacts/profile/?user={{ eachUser.username }}">View Profile</a></span>
-      <!--a class="btn-floating btn-large waves-effect waves-light green" href="/contacts/profile/?user={{ eachUser.username }}"><i class="material-icons">fast_forward</i></a-->
+      <!a class="btn-floating btn-large waves-effect waves-light green" href="/contacts/profile/?user={{ eachUser.username }}"><i class="material-icons">fast_forward</i></a-->
       <!--span class="sevagrid">Premium member</span-->
-    </li>
+    <!--/li>
    </ul>
-</div>
+</div> -->
 {% endfor %}
 </div>
 

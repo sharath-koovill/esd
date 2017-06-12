@@ -43,7 +43,7 @@
     	</div>
     	<div class="row">
     		<div class="col s3" style="text-align: center;">
-    		<span class="card-title center-align grey-text text-lighten-4" >Sharath Koovill</span>
+    		<span class="card-title center-align grey-text text-lighten-4" >{{ first_name }} {{ last_name }}</span>
     		</div>
     	</div>
     </div>
@@ -58,7 +58,7 @@
                 <div class="collapsible-header"><i class="material-icons">place</i>Location</div>
                 <div class="collapsible-body">
                   <ul class="collection">
-                    <li class="collection-item"><label>Country : </label> India{{ user_country }}</li>
+                    <li class="collection-item"><label>Country : </label> {{ user_country }}</li>
                     <li class="collection-item"><label>State : </label> {{ user_state }}</li>
                     <li class="collection-item"><label>Area : </label> {{ user_area }}</li>
                     <li class="collection-item"><label>Pincode : </label> {{ user_postcode }}</li>
@@ -95,21 +95,32 @@
           <div class="card light-blue darken-1">
             <div class="card-content white-text">
               <span class="card-title">Passionate About</span>
-              <p>I am a very Passionate about drawing portraits of people in the park. I have been painting for almost
-              5 years. This passion has brought lot of knowledge regarding various painting techniques.</p>
+              <p>{{user_description}}</p>
             </div>
           </div>
         </div>
         <div class="col s3">
           <div class="card grey lighten-4">
             <div class="card-content black6-text">
-              <p>Sharath Koovill{{ first_name }} {{ last_name }} has 150+ connections</p>
+              <p>{{ first_name }} {{ last_name }} has <span id="connection_count"></span> connections</p>
             </div>
           </div>
           <div class="card grey lighten-4">
-            <div class="card-content black6-text">
-              <p>You are a Network Connection to Sharath Koovill{{ first_name }} {{ last_name }}</p>
-              <button class="btn-flat waves-effect waves-light grey lighten-2" >Block</button>
+            <div id="connection_off" class="card-content black6-text">
+              <p>You are not a Network Connection to {{ first_name }} {{ last_name }}</p>
+              <button class="btn-flat waves-effect waves-light green accent-3 lighten-2" onclick="sendConnectionInvite()" >Connect</button>
+            </div>
+            <div id="connection_on" class="card-content black6-text" hidden>
+              <p>You are a Network Connection to {{ first_name }} {{ last_name }}</p>
+              <!--button class="btn-flat waves-effect waves-light grey lighten-2" >Disconnect</button-->
+            </div>
+            <div id="connection_sent" class="card-content black6-text" hidden>
+              <p>You have already sent a Connection invitation to {{ first_name }} {{ last_name }}</p>
+              <button class="btn-flat waves-effect waves-light green accent-3 lighten-2 disabled">Sent</button>
+            </div>
+            <div id="connection_received" class="card-content black6-text" hidden>
+              <p>You have a Connection invitation from {{ first_name }} {{ last_name }}</p>
+              <button class="btn-flat waves-effect waves-light green accent-3 lighten-2" onclick="acceptConnectionInvite()" >Accept</button>
             </div>
           </div>
           <div class="card grey lighten-4">
@@ -124,12 +135,13 @@
 
     <div class="divider"></div>
   </div>
-
+  {% csrf_token %}
 {% endblock %}
 
 {% block js_content %}
 <script type="text/javascript" src="/static/js/typeahead.bundle.min.js"></script>
 <script type="text/javascript" src="/static/js/search.js"></script>
+<script type="text/javascript" src="/static/js/other_profile.js"></script>
 <script type="text/javascript">
    var cities = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,

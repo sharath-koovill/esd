@@ -9,6 +9,7 @@ urlpatterns = [
 	url(r'^confirmsuccess/', views.confirm_success, name="confirm_success"),
 	url(r'^forgotpassword/', views.forgot_password, name="forgot_password"),
 	url(r'^resetpassword/', views.reset_password, name="reset_password"),
+	url(r'^changepassword/', views.change_password, name="change_password"),
 	url(r'^resetrequestsuccess/', views.reset_password_request, name="reset_password_request"),
 	url(r'^addlocation/', views_account.add_location, name="add_location"),
 	url(r'^addprofession/', views_account.add_profession, name="add_profession"),
@@ -22,5 +23,5 @@ urlpatterns = [
 	url(r'^register/', views.user_register, name="user_register"),
 	url(r'^login/', views.user_login, name="user_login"),
 	url(r'^logout/', views.user_logout, name="user_logout"),
-	url(r'^$', views.home, name='home'), 
+	url(r'^$', views.home, name='home'),
 ]

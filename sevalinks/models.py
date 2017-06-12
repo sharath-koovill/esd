@@ -18,20 +18,8 @@ class User(models.Model):
     last_login = models.DateTimeField(auto_now=True)
     user_active = models.BooleanField(default=False)
     user_type = models.CharField(max_length=2, default='PR', choices=configs.USER_TYPE)
-    #user_identifier = models.UUIDField(default=uuid.uuid4, editable=False)
-    
-    def update_last_login(self):
-        self.last_login = timezone.now()
-        self.save()
-        
-    def update_username(self, name):
-        self.user_name = name
-        self.save()
-        
-    def update_password(self, password):
-        self.password = password
-        self.save()
-
+    user_identifier = models.UUIDField(default=uuid.uuid4, editable=False)
+       
 class UserConfirmation(models.Model):
     user_id = models.ForeignKey(User)
     user_confirmation_id = models.CharField(max_length=100)
@@ -77,62 +65,18 @@ class UserImage(models.Model):
     user_id = models.ForeignKey(User)
     user_image = models.ImageField()
 
-class Service(models.Model):
-    service_id = models.AutoField(primary_key=True)
-    service_name = models.CharField(max_length=50)
-    service_category = models.CharField(max_length=50)
+class Subscription(models.Model):
+    subscription_id = models.AutoField(primary_key=True)
+    subscription_name = models.CharField(max_length=50)
+    subscription_description = models.CharField(max_length=50)
     
-class UserService(models.Model):
-    user_service_id = models.AutoField(primary_key=True)
+class UserSubscription(models.Model):    
     user_id = models.ForeignKey(User)
-    service_title = models.CharField(max_length=50)
-    service_Description = models.TextField()
-    service_contact = models.IntegerField()
-    service_country = models.CharField(max_length=50)
-    service_state = models.CharField(max_length=50)
-    service_district = models.CharField(max_length=50)
-    service_city = models.CharField(max_length=50)
-    service_area = models.CharField(max_length=50)
-    service_postcode = models.CharField(max_length=10)
-    service_created = models.DateTimeField(auto_now=True)
-    service_stopped = models.DateTimeField()
-    service_active = models.BooleanField()
-    service_location_latitude = models.DecimalField(max_digits=12,decimal_places=8)
-    service_location_logitude = models.DecimalField(max_digits=12,decimal_places=8)
+    user_subscription_id = models.ForeignKey(Subscription)
+    start_date = models.DateTimeField(auto_now=True)
+    end_date = models.DateTimeField(null=True)
+    user_subscription_active = models.BooleanField(default=True)   
 
-class ServicePlan(models.Model):
-    service_plan_id = models.AutoField(primary_key=True)
-    service_plan_name = models.CharField(max_length=50)
-    service_plan_description = models.CharField(max_length=50)
-    
-class UserPlan(models.Model):
-    user_plan_id = models.AutoField(primary_key=True)
-    user_plan_name = models.CharField(max_length=50)
-    user_plan_description = models.CharField(max_length=50)
 
-class PremiumUserPlan(models.Model):    
-    user_id = models.ForeignKey(User)
-    user_plan_id = models.ForeignKey(UserPlan)
-    user_plan_created = models.DateTimeField(auto_now=True)
-    user_plan_stopped = models.DateTimeField()
-    user_plan_active = models.BooleanField()
-
-class PremiumUserServicePlan(models.Model):    
-    user_id = models.ForeignKey(User)
-    user_service_id = models.ForeignKey(UserService)
-    service_plan_id = models.ForeignKey(ServicePlan)
-    service_plan_created = models.DateTimeField(auto_now=True)
-    service_plan_stopped = models.DateTimeField()
-    service_plan_active = models.BooleanField()
-    
-class UserContacts(models.Model):
-    user_id = models.ForeignKey(User)
-    user_contact_id = models.CharField(max_length=50)
-    user_contact_created = models.DateTimeField(auto_now=True)
-    
-class ServiceContacts(models.Model):
-    user_id = models.ForeignKey(User)
-    service_contact_id = models.ForeignKey(UserService)
-    service_contact_created = models.DateTimeField(auto_now=True)
     
     

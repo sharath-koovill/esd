@@ -10,11 +10,13 @@ class Search(object):
         self.count = count
         self.user_id = user_id        
     
-    def construct_query(self, searchName, searchProfession="", searchLocation=""):
+    def construct_query(self, searchName, searchProfession="", searchLocation="", searchBlocked=True):
         self.searchName = searchName
         self.searchProfession = searchProfession
         self.searchLocation = searchLocation
-        selectColumns = "SELECT user.user_id, user.first_name, user.last_name, user.username, image.user_image, "
+        self.searchBlocked = searchBlocked
+        
+        selectColumns = "SELECT user.user_id, user.first_name, user.last_name, user.username, user.user_identifier, image.user_image, "
         selectColumns = selectColumns + "pr.user_profession, ed.user_college_active, loc.user_area "
         fromTables = "FROM sevalinks_user AS user "
         join = "LEFT JOIN sevalinks_userimage AS image on image.user_id_id=user.user_id "
@@ -22,7 +24,7 @@ class Search(object):
         join = join + "LEFT JOIN sevalinks_usereducation AS ed on user.user_id=ed.user_id_id "
         join = join + "LEFT JOIN sevalinks_userprofession AS pr on user.user_id=pr.user_id_id "
         condition = "WHERE ((user.first_name LIKE '" + searchName + "%') OR (user.last_name LIKE '" + searchName + "%')) "
-        condition = condition + "AND user.user_id !='" + self.user_id + "' "
+        condition = condition + "AND user.user_id !='" + self.user_id + "' AND user.user_active ='1' "
         if searchProfession:
             condition = condition + "AND pr.user_profession LIKE '" + searchProfession + "%' "
         if searchLocation:
