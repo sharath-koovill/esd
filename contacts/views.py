@@ -2,12 +2,21 @@ import sys
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from contacts.manager import ContactsManager
-
+import sevalinks.utils as utils
 # Create your views here.
 
 def other_profile(request):
     contextDict = {}
-    return render(request, "sevalinks/other_profile.html", contextDict)
+    userIdentifier = request.GET.get('user', '')
+    if userIdentifier != '':
+        userId = utils.get_userid_from_identifier(userIdentifier)
+        contextDict = utils.get_user_with_id(userId)
+        contextDict.update(utils.get_user_location_with_id(userId))
+        contextDict.update(utils.get_user_profession_with_id(userId))
+        contextDict.update(utils.get_user_image_as_dict(userId))
+        return render(request, "sevalinks/other_profile.html", contextDict)
+    else:
+        return redirect("/404/")
 
 def user_connections(request):
     contextDict = {}
@@ -70,10 +79,11 @@ def api_blocked_users(request):
 def api_block_user(request):
     userOneId = request.session.get("user_id")
     responseDict = {"STATUS":"success", "REASON":"good"}
-    if request.method == "POST":
+    userIdentifier = request.GET.get('user')
+    if request.method == "POST" or userIdentifier:
         print request.POST
         try:
-            userTwoId = request.POST.dict()["block_user_id"]
+            userTwoId = utils.get_userid_from_identifier(userIdentifier)
             contactManager = ContactsManager()
             contactManager.block(userOneId, userTwoId, userOneId)
         except:
@@ -81,16 +91,17 @@ def api_block_user(request):
             responseDict["REASON"] = "Invalid request"
     else:
         responseDict["STATUS"] = "fail"
-        responseDict["REASON"] = "Not a POST request"
+        responseDict["REASON"] = "Not a POST request or Invalid User"
     return JsonResponse(responseDict)
 
 def api_unblock_user(request):
     userOneId = request.session.get("user_id")
     responseDict = {"STATUS":"success", "REASON":"good"}
-    if request.method == "POST":
+    userIdentifier = request.GET.get('user')
+    if request.method == "POST" or userIdentifier:
         print request.POST
         try:
-            userTwoId = request.POST.dict()["unblock_user_id"]
+            userTwoId = utils.get_userid_from_identifier(userIdentifier)
             contactManager = ContactsManager()
             contactManager.unblock(userOneId, userTwoId, userOneId)
         except:
@@ -98,50 +109,55 @@ def api_unblock_user(request):
             responseDict["REASON"] = "Invalid request"
     else:
         responseDict["STATUS"] = "fail"
-        responseDict["REASON"] = "Not a POST request"
+        responseDict["REASON"] = "Not a POST request or Invalid User"
     return JsonResponse(responseDict)
 
 def api_request_connection(request):
     userOneId = request.session.get("user_id")
     responseDict = {"STATUS":"success", "REASON":"good"}
-    if request.method == "POST":
+    userIdentifier = request.GET.get('user', '')
+    if request.method == "POST" or userIdentifier:
         print request.POST
         try:
-            userTwoId = request.POST.dict()["request_user_id"]
+            userTwoId = utils.get_userid_from_identifier(userIdentifier)
             contactManager = ContactsManager()
             contactManager.invite(userOneId, userTwoId, userOneId)
-        except:
+        except Exception as e:
+            print e
             responseDict["STATUS"] = "fail"
             responseDict["REASON"] = "Invalid request"
     else:
         responseDict["STATUS"] = "fail"
-        responseDict["REASON"] = "Not a POST request"
+        responseDict["REASON"] = "Not a POST request or Invalid User"
     return JsonResponse(responseDict)
 
 def api_accept_connection(request):
     userOneId = request.session.get("user_id")
     responseDict = {"STATUS":"success", "REASON":"good"}
-    if request.method == "POST":
+    userIdentifier = request.GET.get('user', '')
+    if request.method == "POST" or userIdentifier:
         print request.POST
         try:
-            userTwoId = request.POST.dict()["accept_user_id"]
+            userTwoId = utils.get_userid_from_identifier(userIdentifier)
             contactManager = ContactsManager()
-            contactManager.accept_invitation(userOneId, userTwoId, userOneId)
-        except:
+            contactManager.accept_invitation(userOneId, userTwoId, userTwoId)
+        except Exception as e:
+            print e
             responseDict["STATUS"] = "fail"
             responseDict["REASON"] = "Invalid request"
     else:
         responseDict["STATUS"] = "fail"
-        responseDict["REASON"] = "Not a POST request"
+        responseDict["REASON"] = "Not a POST request or Invalid User"
     return JsonResponse(responseDict)
 
 def api_decline_connection(request):
     userOneId = request.session.get("user_id")
     responseDict = {"STATUS":"success", "REASON":"good"}
-    if request.method == "POST":
+    userIdentifier = request.GET.get('user', '')
+    if request.method == "POST" or userIdentifier:
         print request.POST
         try:
-            userTwoId = request.POST.dict()["decline_user_id"]
+            userTwoId = utils.get_userid_from_identifier(userIdentifier)
             contactManager = ContactsManager()
             contactManager.decline(userOneId, userTwoId, userOneId)
         except:
@@ -149,16 +165,17 @@ def api_decline_connection(request):
             responseDict["REASON"] = "Invalid request"
     else:
         responseDict["STATUS"] = "fail"
-        responseDict["REASON"] = "Not a POST request"
+        responseDict["REASON"] = "Not a POST request or Invalid User"
     return JsonResponse(responseDict)
 
 def api_remove_connection(request):
     userOneId = request.session.get("user_id")
     responseDict = {"STATUS":"success", "REASON":"good"}
-    if request.method == "POST":
+    userIdentifier = request.GET.get('user', '')
+    if request.method == "POST" or userIdentifier:
         print request.POST
         try:
-            userTwoId = request.POST.dict()["remove_user_id"]
+            userTwoId = utils.get_userid_from_identifier(userIdentifier)
             contactManager = ContactsManager()
             contactManager.remove(userOneId, userTwoId)
         except:
@@ -166,5 +183,41 @@ def api_remove_connection(request):
             responseDict["REASON"] = "Invalid request"
     else:
         responseDict["STATUS"] = "fail"
-        responseDict["REASON"] = "Not a POST request"
+        responseDict["REASON"] = "Not a POST request or Invalid User"
+    return JsonResponse(responseDict)
+
+def api_connection_count(request):
+    userOneId = request.session.get("user_id")
+    responseDict = {"STATUS":"success", "REASON":"good"}
+    userIdentifier = request.GET.get('user', '')
+    if userIdentifier != '':
+        try:
+            userId = utils.get_userid_from_identifier(userIdentifier)
+            contactManager = ContactsManager()
+            responseDict["COUNT"] = contactManager.connection_count(userId)
+        except Exception as e:
+            print e
+            responseDict["STATUS"] = "fail"
+            responseDict["REASON"] = "Invalid request"
+    else:
+        responseDict["STATUS"] = "fail"
+        responseDict["REASON"] = "User Identifier not specified"
+    return JsonResponse(responseDict)
+
+def api_connection_check(request):
+    userOneId = request.session.get("user_id")
+    responseDict = {"STATUS":"success", "REASON":"good"}
+    userIdentifier = request.GET.get('user', '')
+    if userIdentifier != '':
+        try:
+            userTwoId = utils.get_userid_from_identifier(userIdentifier)
+            contactManager = ContactsManager()
+            responseDict["CONNECTION_STATUS"] = contactManager.check_connection(userOneId, userTwoId)
+        except Exception as e:
+            print e
+            responseDict["STATUS"] = "fail"
+            responseDict["REASON"] = "Invalid request"
+    else:
+        responseDict["STATUS"] = "fail"
+        responseDict["REASON"] = "User Identifier not specified"
     return JsonResponse(responseDict)

@@ -8,16 +8,17 @@ from contacts.manager import ContactsManager
 STATUS_CODE = {0:"Pending",
                1:"Accepted",
                2:"Declined",
-               3:"Blocked"}
+               3:"Blocked",
+               4:"Received"}
 
 class Contacts(models.Model):
-    user_one_id = models.ForeignKey(User, related_name='+')
-    user_two_id = models.ForeignKey(User, related_name='+')
+    user_one_id = models.IntegerField()
+    user_two_id = models.IntegerField()
     status = models.IntegerField()
-    user_action_id = models.ForeignKey(User, related_name='+')
+    user_action_id = models.IntegerField()
     contact_status_created = models.DateTimeField(auto_now=True)
-    
-    objects = ContactsManager()
-    
-    class Meta:
-        unique_together = [("user_one_id", "user_two_id")]
+
+    #objects = ContactsManager()
+
+    # class Meta:
+    #     unique_together = [("user_one_id", "user_two_id")]
