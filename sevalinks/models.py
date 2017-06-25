@@ -6,7 +6,7 @@ import configs
 import uuid
 
 # Create your models here.
-class User(models.Model):    
+class User(models.Model):
     user_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -19,7 +19,7 @@ class User(models.Model):
     user_active = models.BooleanField(default=False)
     user_type = models.CharField(max_length=2, default='PR', choices=configs.USER_TYPE)
     user_identifier = models.UUIDField(default=uuid.uuid4, editable=False)
-       
+
 class UserConfirmation(models.Model):
     user_id = models.ForeignKey(User)
     user_confirmation_id = models.CharField(max_length=100)
@@ -36,7 +36,7 @@ class UserLocation(models.Model):
     user_postcode = models.CharField(max_length=10)
     user_location_latitude = models.DecimalField(null=True, max_digits=12,decimal_places=8)
     user_location_logitude = models.DecimalField(null=True, max_digits=12,decimal_places=8)
-    
+
 class UserProfession(models.Model):
     user_id = models.ForeignKey(User)
     user_job_designation = models.CharField(max_length=50, null=True, choices=configs.DESIGNATION)
@@ -45,7 +45,7 @@ class UserProfession(models.Model):
     user_profession = models.CharField(max_length=50)
     user_company = models.CharField(null=True, max_length=50)
     user_description = models.TextField(null=True)
-    
+
 class UserEducation(models.Model):
     user_id = models.ForeignKey(User)
     user_college = models.CharField(max_length=50)
@@ -69,14 +69,21 @@ class Subscription(models.Model):
     subscription_id = models.AutoField(primary_key=True)
     subscription_name = models.CharField(max_length=50)
     subscription_description = models.CharField(max_length=50)
-    
-class UserSubscription(models.Model):    
+
+class UserSubscription(models.Model):
     user_id = models.ForeignKey(User)
     user_subscription_id = models.ForeignKey(Subscription)
     start_date = models.DateTimeField(auto_now=True)
     end_date = models.DateTimeField(null=True)
-    user_subscription_active = models.BooleanField(default=True)   
+    user_subscription_active = models.BooleanField(default=True)
 
-
-    
-    
+class Notification(models.Model):
+    """ check configs for description_id and category_id
+    """
+    source_id = models.IntegerField()
+    target_id = models.IntegerField()
+    is_active = models.BooleanField(default=True)
+    init_date = models.DateTimeField(auto_now=True)
+    ack_date = models.DateTimeField(null=True)
+    description_id = models.IntegerField()
+    category_id = models.IntegerField()

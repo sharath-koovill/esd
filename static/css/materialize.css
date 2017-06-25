@@ -5171,6 +5171,7 @@ button.btn-floating {
   opacity: 0;
   position: absolute;
   z-index: 999;
+  white-space: nowrap;
   will-change: width, height;
 }
 

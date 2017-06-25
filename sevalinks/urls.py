@@ -3,6 +3,8 @@ import views
 import views_account
 
 urlpatterns = [
+	url(r'^notification_check/', views_account.api_notification_check, name="api_notification_check"),
+	url(r'^notification_ack/', views_account.api_notification_ack, name="api_notification_ack"),
 	url(r'^subscriptions/', views.user_subscriptions, name="user_subscriptions"),
 	url(r'^changeimage/', views.change_image_render, name="change_image_render"),
 	url(r'^confirmrequest/', views.confirm_render, name="confirm_render"),

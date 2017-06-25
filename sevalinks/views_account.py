@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib.auth import logout
+from django.http import JsonResponse
 import forms
 import models
 import configs
@@ -10,6 +11,7 @@ import lepl.apps.rfc3696 as rfc
 from passlib.hash import pbkdf2_sha256 as hashPass
 import datetime
 import image_handler
+from contacts.manager import ContactsManager
 
 def user_landing(request):
     userId = request.session.get("user_id")
@@ -142,3 +144,43 @@ def add_profession(request):
     contextDict.update(utils.get_profession_as_dict(request.session["user_id"]))
     contextDict.update(utils.get_user_image_as_dict(userId))
     return render(request, "sevalinks/user_profession.html", contextDict)
+
+def api_notification_check(request):
+    userOneId = request.session.get("user_id")
+    responseDict = {"STATUS":"success", "REASON":"good"}
+    try:
+        noticeList = []
+        contactManager = ContactsManager()
+        notice = contactManager.check_notification(userOneId)
+        print notice
+        for eachNotice in notice:
+            noticeDict = {}
+            noticeDict["DESCRIPTION"] = configs.NOTIFICATION_DESCRIPTION[str(eachNotice["description_id"])]
+            noticeDict["CATEGORY"] = configs.NOTIFICATION_CATEGORY[str(eachNotice["category_id"])]
+            noticeDict["DESCRIPTION_TYPE"] = configs.NOTIFICATION_DESCRIPTION_TYPE[str(eachNotice["description_id"])]
+            noticeDict["SOURCE"] = utils.get_user_with_id(eachNotice["source_id"])
+            noticeList.append(noticeDict)
+            print noticeDict
+        responseDict["NOTIFICATION"] = noticeList
+    except Exception as e:
+        print e
+        responseDict["STATUS"] = "fail"
+        responseDict["REASON"] = "Invalid request"
+    return JsonResponse(responseDict)
+
+def api_notification_ack(request):
+    userOneId = request.session.get("user_id")
+    responseDict = {"STATUS":"success", "REASON":"good"}
+    if request.method == "POST":
+        try:
+            category = request.POST.get('category', '')
+            contactManager = ContactsManager()
+            notice = contactManager.ack_notification(userOneId, category)
+        except Exception as e:
+            print e
+            responseDict["STATUS"] = "fail"
+            responseDict["REASON"] = "Invalid request"
+    else:
+        responseDict["STATUS"] = "fail"
+        responseDict["REASON"] = "Not a POST request"
+    return JsonResponse(responseDict)

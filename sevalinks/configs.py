@@ -10,7 +10,7 @@ USER_TYPE = (("ST","STUDENT"), ("PR","PROFESSIONAL"))
 INDUSTRY = (("AGRI", "Agriculture"),
             ("BANK", "Banking"),
             ("CONT", "Construction"),
-            ("EDU", "Education"), 
+            ("EDU", "Education"),
             ("ENGG", "Engineering"),
             ("FARM", "Farming"),
             ("FOR", "Forestry"),
@@ -18,7 +18,7 @@ INDUSTRY = (("AGRI", "Agriculture"),
             ("FISH", "Fishing"),
             ("GOV", "Government Services"),
             ("HEAL", "HealthCare"),
-            ("INS", "Insurance"),            
+            ("INS", "Insurance"),
             ("IT", "IT"),
             ("MDIA", "Media"),
             ("MINE", "Mining"),
@@ -26,8 +26,8 @@ INDUSTRY = (("AGRI", "Agriculture"),
             ("PHAR", "Pharmaceuticals"),
             ("REAL", "RealEstate"),
             ("SALE", "Sales"),
-            ("TRAD", "Trading"),  
-            ("TRAN", "Transportation"),            
+            ("TRAD", "Trading"),
+            ("TRAN", "Transportation"),
             ("OTH", "Others"),)
 
 STATES = (("AP","Andhra Pradesh"),
@@ -90,3 +90,12 @@ EXPERIENCE = (("U1","0 - 1 Year"),
               ("U10","6 - 10 Year"),
               ("U20","10 - 20 Year"),
               ("A20","Above 20 Year"))
+
+NOTIFICATION_CATEGORY = {"0":"/contacts/connections/",
+                        "1":"/messages/"}
+
+NOTIFICATION_DESCRIPTION = {"0":"You have a request for Network Connection",
+                        "1":"Your request for Network Connection has been accepted"}
+
+NOTIFICATION_DESCRIPTION_TYPE = {"0":"INVITATION",
+                        "1":"INVITATION ACCEPT"}
