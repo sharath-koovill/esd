@@ -2,7 +2,7 @@ import datetime
 from django.utils import timezone
 from django.db import models
 from django.db.models import Q
-from sevalinks.models import User, Notification
+from sevalinks.models import User, Notification, Messages
 import models as contactsModel
 
 class ContactsManager(object):
@@ -145,3 +145,20 @@ class ContactsManager(object):
 
     def ack_notification(self, user_id, category):
         Notification.objects.filter(Q(target_id=user_id) & Q(is_active=True) & Q(category_id=category)).update(is_active=False, ack_date=timezone.now())
+
+    def send_message(self, source_id, target_id, message):
+        cont = Messages(source_id=source_id, target_id=target_id, message=message)
+        cont.save()
+        notice = Notification(source_id=source_id, target_id=target_id, description_id="2", category_id="1")
+        notice.save()
+
+    def get_sent_messages(self, user_id):
+        msg = Messages.objects.filter(source_id=user_id).order_by('-send_date').values()
+        return msg
+
+    def get_received_messages(self, user_id):
+        msg = Messages.objects.filter(target_id=user_id).order_by('-send_date').values()
+        return msg
+
+    def ack_message(self, message_id):
+        Notification.objects.filter(id=message_id).update(ack_date=timezone.now())

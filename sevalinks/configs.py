@@ -95,7 +95,9 @@ NOTIFICATION_CATEGORY = {"0":"/contacts/connections/",
                         "1":"/messages/"}
 
 NOTIFICATION_DESCRIPTION = {"0":"You have a request for Network Connection",
-                        "1":"Your request for Network Connection has been accepted"}
+                        "1":"Your request for Network Connection has been accepted",
+                        "2":"You have new messages"}
 
 NOTIFICATION_DESCRIPTION_TYPE = {"0":"INVITATION",
-                        "1":"INVITATION ACCEPT"}
+                        "1":"INVITATION ACCEPT",
+                        "2": "MESSAGE"}

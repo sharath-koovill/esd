@@ -87,3 +87,10 @@ class Notification(models.Model):
     ack_date = models.DateTimeField(null=True)
     description_id = models.IntegerField()
     category_id = models.IntegerField()
+
+class Messages(models.Model):
+    source_id = models.IntegerField()
+    target_id = models.IntegerField()
+    send_date = models.DateTimeField(auto_now=True)
+    ack_date = models.DateTimeField(null=True)
+    message = models.TextField()

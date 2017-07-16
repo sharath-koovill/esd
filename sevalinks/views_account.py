@@ -184,3 +184,23 @@ def api_notification_ack(request):
         responseDict["STATUS"] = "fail"
         responseDict["REASON"] = "Not a POST request"
     return JsonResponse(responseDict)
+
+def inbox(request):
+    userId = request.session.get("user_id")
+    if not userId:
+        logout(request)
+        return redirect("/seva/login/")
+    contextDict = {}
+    contextDict = utils.get_user_with_id(userId)
+    contextDict["message_box"] = "Inbox"
+    return render(request, "sevalinks/user_messages.html", contextDict)
+
+def outbox(request):
+    userId = request.session.get("user_id")
+    if not userId:
+        logout(request)
+        return redirect("/seva/login/")
+    contextDict = {}
+    contextDict = utils.get_user_with_id(userId)
+    contextDict["message_box"] = "Outbox"
+    return render(request, "sevalinks/user_messages.html", contextDict)

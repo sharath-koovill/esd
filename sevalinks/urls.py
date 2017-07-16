@@ -3,6 +3,9 @@ import views
 import views_account
 
 urlpatterns = [
+	url(r'^messages/', views_account.inbox, name="inbox"),
+	url(r'^inbox/', views_account.inbox, name="inbox"),
+	url(r'^outbox/', views_account.outbox, name="outbox"),
 	url(r'^notification_check/', views_account.api_notification_check, name="api_notification_check"),
 	url(r'^notification_ack/', views_account.api_notification_ack, name="api_notification_ack"),
 	url(r'^subscriptions/', views.user_subscriptions, name="user_subscriptions"),

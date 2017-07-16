@@ -17,4 +17,7 @@ urlpatterns = [
     url(r'^connection_remove/', views.api_remove_connection, name="api_remove_connection"),
     url(r'^connection_block/', views.api_block_user, name="api_block_user"),
     url(r'^connection_unblock/', views.api_unblock_user, name="api_unblock_user"),
+    url(r'^message_send/', views.api_send_message, name="api_send_message"),
+    url(r'^message_received/', views.api_received_messages, name="api_received_messages"),
+    url(r'^message_sent/', views.api_sent_messages, name="api_sent_messages"),
 ]

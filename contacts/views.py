@@ -221,3 +221,87 @@ def api_connection_check(request):
         responseDict["STATUS"] = "fail"
         responseDict["REASON"] = "User Identifier not specified"
     return JsonResponse(responseDict)
+
+def api_send_message(request):
+    userOneId = request.session.get("user_id", '')
+    responseDict = {"STATUS":"success", "REASON":"good"}
+    if request.method == "POST":
+        print request.POST
+        try:
+            if not userOneId:
+                userOneId = request.POST.get('source_id', '')
+            userTwoId = request.POST.get('target_id', '')
+            message = request.POST.get('message', '')
+            if userOneId and userTwoId and message:
+                contactManager = ContactsManager()
+                contactManager.send_message(userOneId, userTwoId, message)
+            else:
+                raise Exception('POST data invalid')
+        except Exception as e:
+            print e
+            responseDict["STATUS"] = "fail"
+            responseDict["REASON"] = "Invalid request"
+    else:
+        responseDict["STATUS"] = "fail"
+        responseDict["REASON"] = "Not a POST request or Invalid User"
+    return JsonResponse(responseDict)
+
+def api_received_messages(request):
+    userOneId = request.session.get("user_id")
+    responseDict = {"STATUS":"success", "REASON":"good"}
+    # a = {"id":1, "send_date":"2017-06-25 20:57:44.129480", "source_id":33, "target_id":43, "first_name":"Shankar", "last_name":"Naidu", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-25 20:57:44.129480","message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # b = {"id":2, "send_date":"2017-06-24 20:57:44.129480", "source_id":34, "target_id":43, "first_name":"Shankar1", "last_name":"Naidu1", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-24 20:57:44.129480", "message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # c = {"id":3, "send_date":"2017-06-23 20:57:44.129480", "source_id":35, "target_id":43, "first_name":"Shankar2", "last_name":"Naidu2", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-23 20:57:44.129480","message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # d = {"id":4, "send_date":"2017-06-22 20:57:44.129480", "source_id":36, "target_id":43, "first_name":"Shankar3", "last_name":"Naidu3", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-22 20:57:44.129480","message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # responseDict["MESSAGES"] = [a, b, c, d]
+
+    if userOneId != '':
+        try:
+            contactManager = ContactsManager()
+            conv = contactManager.get_received_messages(userOneId)
+            respList = []
+            for eachConv in conv:
+                user = utils.get_user_with_id(eachConv["source_id"])
+                eachConv["first_name"] = user["first_name"]
+                eachConv["last_name"] = user["last_name"]
+                respList.append(eachConv)
+            responseDict["MESSAGES"] = respList
+        except Exception as e:
+            print e
+            responseDict["STATUS"] = "fail"
+            responseDict["REASON"] = "Invalid request"
+    else:
+        responseDict["STATUS"] = "fail"
+        responseDict["REASON"] = "User Identifier not specified"
+    return JsonResponse(responseDict)
+
+def api_sent_messages(request):
+    userOneId = request.session.get("user_id")
+    responseDict = {"STATUS":"success", "REASON":"good"}
+    # a = {"id":1, "send_date":"2017-06-25 20:57:44.129480", "source_id":33, "target_id":43, "first_name":"Shankar", "last_name":"Naidu", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-25 20:57:44.129480","message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # b = {"id":2, "send_date":"2017-06-24 20:57:44.129480", "source_id":33, "target_id":44, "first_name":"Shankar1", "last_name":"Naidu1", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-24 20:57:44.129480", "message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # c = {"id":3, "send_date":"2017-06-23 20:57:44.129480", "source_id":33, "target_id":45, "first_name":"Shankar2", "last_name":"Naidu2", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-23 20:57:44.129480","message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # d = {"id":4, "send_date":"2017-06-22 20:57:44.129480", "source_id":33, "target_id":46, "first_name":"Shankar3", "last_name":"Naidu3", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-22 20:57:44.129480","message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    # e = {"id":5, "send_date":"2017-06-22 20:57:44.129480", "source_id":33, "target_id":46, "first_name":"Shankar3", "last_name":"Naidu3", "user_identifier": "ibfdbfkdbfkbfk", "ack_date": "2017-06-22 20:57:44.129480","message":"bjbfabfasbfkbaskfbaskbkasbfkasbfkasbfkbaskfbaskbkasbkasbfkas"}
+    #
+    # responseDict["MESSAGES"] = [a, b, c, d, e]
+
+    if userOneId != '':
+        try:
+            contactManager = ContactsManager()
+            conv = contactManager.get_sent_messages(userOneId)
+            respList = []
+            for eachConv in conv:
+                user = utils.get_user_with_id(eachConv["target_id"])
+                eachConv["first_name"] = user["first_name"]
+                eachConv["last_name"] = user["last_name"]
+                respList.append(eachConv)
+            responseDict["MESSAGES"] = respList
+        except Exception as e:
+            print e
+            responseDict["STATUS"] = "fail"
+            responseDict["REASON"] = "Invalid request"
+    else:
+        responseDict["STATUS"] = "fail"
+        responseDict["REASON"] = "User Identifier not specified"
+    return JsonResponse(responseDict)
