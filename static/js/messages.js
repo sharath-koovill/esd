@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $("#message_history").hide();
   getContacts();
+  notificationAcknowledge(1);
   if ($("#message_section").html() == "Inbox"){
     getReceivedMessages();
   }
@@ -141,6 +142,19 @@ function setReplyId(){
   $("#message_connections").val(userID).trigger('change');
 }
 
+function notificationAcknowledge(category_id) {
+  var ajaxUrl = '/seva/notification_ack/';
+  var postData = {"csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val(), "category": category_id };
+  $.ajax({
+    url: ajaxUrl,
+    type: "POST",
+    data: postData,
+    dataType: 'json',
+    success: function success(data) {
+
+    }
+  });
+}
 
 // function createOrOpenDB(connections){
 //   Dexie.delete('sevalinks');

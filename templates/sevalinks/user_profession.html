@@ -4,7 +4,7 @@
 
 
 {% block account_content %}
-  <br></br> 
+  <br></br>
   <div class="col s12 m8 l9">
     <form class="col s12" action="/seva/addprofession/" method="post">
   		{% csrf_token %}
@@ -12,18 +12,18 @@
   		<div class="col s12">
 			<p style="height:10px;color: #f44242;">{{ validation_error }}</p>
 		</div>
-  		<div class="col s12">  		
+  		<div class="col s12">
 		  	<h5 class="header center orange-text">Your Profession</h5>
 	    </div>
-	    <div class="col s12">  		
+	    <div class="col s12">
 		  	<br></br>
 	    </div>
-	    <div class="col s12">  		
-		  	<div class="input-field col s6" id="prefetch">	  	  
+	    <div class="col s12">
+		  	<div class="input-field col s6" id="prefetch">
 		      <input id="id_user_profession" name="user_profession" type="text" value="{{ user_profession }}" placeholder="Profession *" class="validate">
 		      <!--label for="id_user_profession">Profession<span> *</span></label-->
 		    </div>
-		    <div class="input-field col s6">	  	  
+		    <div class="input-field col s6">
 		      <select id="id_user_industry" name="user_industry" value={{ user_industry }}>
 		      	<option value="">Select your option</option>
 				<option value="AGRI">Agriculture</option>
@@ -52,8 +52,8 @@
 		      <label for="id_user_industry">Industry</label>
 		    </div>
 	    </div>
-  		<div class="col s12">  		
-		  	<div class="input-field col s6">	  	  
+  		<div class="col s12">
+		  	<div class="input-field col s6">
 		      <select id="id_user_job_designation" name="user_job_designation" value={{ user_job_designation }}>
 		      	<option value="">Select your option</option>
 				<option value="TRAIN">Trainee</option>
@@ -76,7 +76,7 @@
 		      <label for="id_user_job_designation">Job Designation level</label>
 		    </div>
 	    </div>
-	    <div class="col s12">  		
+	    <div class="col s12">
 		  	<div class="input-field col s6">
 		  		<select id="id_user_experience" name="user_experience" value={{ user_experience }}>
 				<option value="U1">0 - 1 Year</option>
@@ -86,11 +86,11 @@
 				<option value="U20">10 - 20 Year</option>
 				<option value="A20">Above 20 Year</option>
 				</select>
-		  		<label for="id_user_experience">Experience<span> *</span></label>  	  
+		  		<label for="id_user_experience">Experience<span> *</span></label>
 		      </div>
 	    </div>
-	    <!--div class="col s12">  		
-		  	<div class="input-field col s6">	  	  
+	    <!--div class="col s12">
+		  	<div class="input-field col s6">
 		      <select id="id_user_industry" name="user_industry" value={{ user_industry }}>
 		      	<option value="">Select your option</option>
 				<option value="AGRI">Agriculture</option>
@@ -119,24 +119,24 @@
 		      <label for="id_user_industry">Industry</label>
 		    </div>
 	    </div-->
-	    <div class="col s12">  		
-		  	<div class="input-field col s6">	  	  
+	    <div class="col s12">
+		  	<div class="input-field col s6">
 		      <input id="id_user_company" name="user_company" type="text" value="{{ user_company }}" placeholder="Eg. ESD India" class="validate">
 		      <label for="id_user_company">Company</label>
 		    </div>
 	    </div>
-	    <div class="col s12">  		
-		  	<div class="input-field col s12">		  	  
-		  	  <textarea id="id_user_description" name="user_description" class="materialize-textarea" >{{ user_description }}</textarea>	      
+	    <div class="col s12">
+		  	<div class="input-field col s12">
+		  	  <textarea id="id_user_description" name="user_description" class="materialize-textarea" >{{ user_description }}</textarea>
 		      <label for="id_user_description">Passionate about:</label>
 		    </div>
-	    </div>	        
+	    </div>
 	    <div class="col s12">
-	    	<br />	    		    		  	
-	    </div>	    
+	    	<br />
+	    </div>
 	    <div class="col s12">
 		    <div class="input-field col s6">
-		    	<a class="waves-effect waves-light btn" href="/seva/myaccount/" ><i class="material-icons">fast_rewind</i></a>		    	
+		    	<a class="waves-effect waves-light btn" href="/seva/myaccount/" ><i class="material-icons">fast_rewind</i></a>
 			    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
 		    	<i class="material-icons right">send</i>
 		  		</button>
@@ -144,11 +144,11 @@
   		</div>
 	    <div class="col s12">
 	    	<br />
-	    	<label>(User Profession and Experience fields are mandatory)</label>	    		  	
+	    	<label>(User Profession and Experience fields are mandatory)</label>
 	    </div>
     </div>
     </form>
-  </div>  
+  </div>
 {% endblock %}
 {% block js_content %}
 <script type="text/javascript">
@@ -160,8 +160,8 @@
   $("#id_user_industry").val("{{ user_industry }}");
   </script>
   <script type="text/javascript">
-   $(document).ready(function() {   	
-    $('select').material_select();        
+   $(document).ready(function() {
+    $('select').material_select();
   });
   $("#id_user_state").val("{{ user_state }}");
   </script>
@@ -170,7 +170,7 @@
    var profession = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  
+
   prefetch: '/static/js/profession.json'
 });
 
@@ -181,4 +181,9 @@ $('#prefetch .validate').typeahead(null, {
   source: profession
 });
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.modal').modal();
+  });
+  </script>
 {% endblock %}

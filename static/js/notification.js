@@ -17,15 +17,23 @@ function getNotifications() {
 
 function notifyConnections(notices) {
   var notificationCount = 0;
+  var msgNotCnt = 0;
   var cnt = Object.keys(notices).length;
   for (var i=0; i<cnt; i++){
     if (notices[i]["DESCRIPTION_TYPE"] == "INVITATION ACCEPT" || notices[i]["DESCRIPTION_TYPE"] == "INVITATION"){
       notificationCount = notificationCount + 1;
     }
+    if (notices[i]["DESCRIPTION_TYPE"] == "MESSAGE"){
+      msgNotCnt = msgNotCnt + 1;
+    }
   }
   if(notificationCount > 0){
     var noticeHtml = getNoticeHTML(notificationCount);
     $(".connections_notify").html(noticeHtml);
+  }
+  if(msgNotCnt > 0){
+    var noticeHtml = getMsgNoticeHTML(msgNotCnt);
+    $(".msgs_notify").html(noticeHtml);
   }
 }
 
@@ -57,6 +65,11 @@ function getNoticeHTML(count){
   return element;
 }
 
+function getMsgNoticeHTML(count){
+  var element = "Messages<span onclick='notificationAcknowledge(1)' class='new badge red'>"+ count +"</span>";
+  return element;
+}
+
 function getEachNotice(count){
   var element = "Connections<span onclick='notificationAcknowledge(0)' class='new badge red'>"+ count +"</span>";
   return element;
@@ -64,7 +77,6 @@ function getEachNotice(count){
 
 
 function notificationAcknowledge(category_id) {
-  alert(category_id);
   var ajaxUrl = '/seva/notification_ack/';
   var postData = {"csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val(), "category": category_id };
   $.ajax({

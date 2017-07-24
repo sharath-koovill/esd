@@ -12,6 +12,7 @@ var users;
 
 $(document).ready(function () {
   getConnections();
+  notificationAcknowledge(0);
 });
 
 function getConnections() {
@@ -64,7 +65,7 @@ function renderConnectionsHB(users) {
   var tlate = Handlebars.compile(source);
   var allConn = "";
   jQuery.each(users, function() {
-    allConn = allConn + tlate(this);    
+    allConn = allConn + tlate(this);
   });
   $("#user_container").html(allConn);
 }
@@ -101,7 +102,7 @@ var Connection = function (_React$Component) {
     key: 'userImage',
     value: function userImage() {
       var userImage = this.props.user_image;
-      if (userImage != "") {
+      if (userImage) {
         return "/static/userimages/" + userImage;
       } else {
         return "/static/userimages/default_user.png";
@@ -166,4 +167,18 @@ function RenderConnections(users) {
   });
   alert(element);
   ReactDOM.render(element, document.getElementById('user_container'));
+}
+
+function notificationAcknowledge(category_id) {
+  var ajaxUrl = '/seva/notification_ack/';
+  var postData = {"csrfmiddlewaretoken" : $("input[name=csrfmiddlewaretoken]").val(), "category": category_id };
+  $.ajax({
+    url: ajaxUrl,
+    type: "POST",
+    data: postData,
+    dataType: 'json',
+    success: function success(data) {
+
+    }
+  });
 }

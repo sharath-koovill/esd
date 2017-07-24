@@ -131,7 +131,7 @@ class ContactsManager(object):
         otherUser = user_two_id
         if user_one_id > user_two_id:
             user_two_id, user_one_id = user_one_id, user_two_id
-        cont = contactsModel.Contacts.objects.filter((Q(user_one_id=user_one_id) | Q(user_two_id=user_two_id))).values()
+        cont = contactsModel.Contacts.objects.filter((Q(user_one_id=user_one_id) & Q(user_two_id=user_two_id))).values()
         if cont and cont[0]["status"] == 0 and cont[0]["user_action_id"] == otherUser:
             return 4
         elif cont:

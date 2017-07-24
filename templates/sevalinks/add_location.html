@@ -4,7 +4,7 @@
 
 
 {% block account_content %}
-  <br><br> 
+  <br><br>
   <div class="col s12 m8 l9">
     <form class="col s12" action="/seva/addlocation/" method="post">
   		{% csrf_token %}
@@ -12,18 +12,18 @@
   		<div class="col s12">
 			<p style="height:10px;color: #f44242;">{{ validation_error }}</p>
 		</div>
-  		<div class="col s12">  		
+  		<div class="col s12">
 		  	<h5 class="header center orange-text">Your Location</h5>
 	    </div>
-  		<div class="col s12">  		
-		  	<div class="input-field col s6">	  	  
+  		<div class="col s12">
+		  	<div class="input-field col s6">
 		      <input readonly placeholder="Eg. India" id="id_user_country" name="user_country" value="India" type="text" class="validate">
 		      <label for="id_user_country">Country</label>
 		    </div>
 	    </div>
-	    <div class="col s12">  		
+	    <div class="col s12">
 		  	<div class="input-field col s6">
-		  			  			
+
 		  		<select id="id_user_state" name="user_state" >
 				<option value="AP">Andhra Pradesh</option>
 				<option value="AR">Arunachal Pradesh</option>
@@ -62,33 +62,33 @@
 				<option value="LD">Lakshadweep</option>
 				<option value="PY">Puducherry</option>
 				</select>
-		  		<label for="id_user_state">State</label>  	  
+		  		<label for="id_user_state">State</label>
 		      <!--input placeholder="Eg. Karnataka" id="id_user_state" name="user_state" value="{{ user_state }}" type="text" class="validate"-->
-		      
+
 		    </div>
 		    <div class="input-field col s6" id="prefetch">
-		  		<!--label for="id_user_area">Area</label-->	  	  
-		      <input id="id_user_area" name="user_area" type="text" value="{{ user_area }}" placeholder="Area" class="validate">		      
+		  		<!--label for="id_user_area">Area</label-->
+		      <input id="id_user_area" name="user_area" type="text" value="{{ user_area }}" placeholder="Area" class="validate">
 		    </div>
 	    </div>
-	    <!--div class="col s12">  		
+	    <!--div class="col s12">
 		  	<div class="input-field col s6" id="prefetch">
-		  		<label for="id_user_area">Area</label>	  	  
-		      <input id="id_user_area" name="user_area" type="text" value="{{ user_area }}" placeholder="Area" class="validate">		      
+		  		<label for="id_user_area">Area</label>
+		      <input id="id_user_area" name="user_area" type="text" value="{{ user_area }}" placeholder="Area" class="validate">
 		    </div>
 	    </div-->
-	    <div class="col s12">  		
-		  	<div class="input-field col s6">	  	  
+	    <div class="col s12">
+		  	<div class="input-field col s6">
 		      <input id="id_user_postcode" name="user_postcode" type="number" value="{{ user_postcode }}" placeholder="Eg. 575001" class="validate">
 		      <label for="id_user_postcode">Pincode</label>
 		    </div>
-	    </div>	        
+	    </div>
 	    <div class="col s12">
-	    	<br />	    		    		  	
-	    </div>	    
+	    	<br />
+	    </div>
 	    <div class="col s12">
 		    <div class="input-field col s6">
-		    	<a class="waves-effect waves-light btn" href="/seva/myaccount/" ><i class="material-icons">fast_rewind</i></a>		    	
+		    	<a class="waves-effect waves-light btn" href="/seva/myaccount/" ><i class="material-icons">fast_rewind</i></a>
 			    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
 		    	<i class="material-icons right">send</i>
 		  		</button>
@@ -96,16 +96,16 @@
   		</div>
 	    <div class="col s12">
 	    	<br />
-	    	<label>(All fields are mandatory)</label>	    		  	
+	    	<label>(All fields are mandatory)</label>
 	    </div>
     </div>
     </form>
-  </div>  
+  </div>
 {% endblock %}
 {% block js_content %}
 <script type="text/javascript">
-   $(document).ready(function() {   	
-    $('select').material_select();        
+   $(document).ready(function() {
+    $('select').material_select();
   });
   $("#id_user_state").val("{{ user_state }}");
   </script>
@@ -114,7 +114,7 @@
    var cities = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.whitespace,
   queryTokenizer: Bloodhound.tokenizers.whitespace,
-  
+
   prefetch: '/static/js/cities.json'
 });
 
@@ -125,4 +125,9 @@ $('#prefetch .validate').typeahead(null, {
   source: cities
 });
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.modal').modal();
+  });
+  </script>
 {% endblock %}

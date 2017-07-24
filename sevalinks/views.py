@@ -111,6 +111,7 @@ def edit_profile_render(request):
         logout(request)
         return redirect("/seva/login/")
     contextDict = utils.get_user_with_id(userId)
+    contextDict.update(utils.get_user_image_as_dict(userId))
     return render(request, "sevalinks/edit_profile.html", contextDict)
 
 def edit_profile(request):
@@ -133,6 +134,7 @@ def edit_profile(request):
                 contextDict['validation_error'] = editStatus
                 return render(request, "sevalinks/edit_profile.html", contextDict)
     contextDict = utils.get_user_with_id(userId)
+    contextDict.update(utils.get_user_image_as_dict(userId))
     return render(request, "sevalinks/edit_profile.html", contextDict)
 
 def reset_password(request):
